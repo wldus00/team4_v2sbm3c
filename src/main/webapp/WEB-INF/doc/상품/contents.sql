@@ -20,6 +20,30 @@ CREATE SEQUENCE nbgrp_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
 
 
+/* 등록 */
+INSERT INTO nbgrp(nbgrpno, name, rdate)
+VALUES(nbgrp_seq.nextval, '노트북', sysdate);
+
+/* 목록 */
+SELECT nbgrpno, name, rdate
+FROM nbgrp
+ORDER BY nbgrpno ASC;
+
+/* 조회 */
+SELECT nbgrpno, name, rdate 
+FROM nbgrp
+WHERE nbgrpno = 1;
+
+/* 수정 */
+UPDATE nbgrp
+SET name='데스크탑'
+WHERE nbgrpno = 1;
+
+/* 삭제 */
+DELETE FROM nbgrp
+WHERE nbgrpno = 1;
+
+
 /**********************************/
 /* Table Name: 노트북 종류 */
 /**********************************/
