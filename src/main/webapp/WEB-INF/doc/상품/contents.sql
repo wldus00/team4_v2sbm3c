@@ -1,5 +1,5 @@
 /**********************************/
-/* Table Name: ³ëÆ®ºÏ */
+/* Table Name: ï¿½ï¿½Æ®ï¿½ï¿½ */
 /**********************************/
 CREATE TABLE nbgrp(
 		nbgrpno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
@@ -7,45 +7,45 @@ CREATE TABLE nbgrp(
 		rdate                         		DATE		 NOT NULL
 );
 
-COMMENT ON TABLE nbgrp is '³ëÆ®ºÏ';
-COMMENT ON COLUMN nbgrp.nbgrpno is '³ëÆ®ºÏ ±×·ì ¹øÈ£';
-COMMENT ON COLUMN nbgrp.name is 'ÀÌ¸§';
-COMMENT ON COLUMN nbgrp.rdate is '±×·ì »ý¼ºÀÏ';
+COMMENT ON TABLE nbgrp is 'ï¿½ï¿½Æ®ï¿½ï¿½';
+COMMENT ON COLUMN nbgrp.nbgrpno is 'ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½×·ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN nbgrp.name is 'ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN nbgrp.rdate is 'ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 CREATE SEQUENCE nbgrp_seq
-  START WITH 1               -- ½ÃÀÛ ¹øÈ£
-  INCREMENT BY 1           -- Áõ°¡°ª
-  MAXVALUE 9999999999  -- ÃÖ´ë°ª: 9999999 --> NUMBER(7) ´ëÀÀ
-  CACHE 2                       -- 2¹øÀº ¸Þ¸ð¸®¿¡¼­¸¸ °è»ê
-  NOCYCLE;                     -- ´Ù½Ã 1ºÎÅÍ »ý¼ºµÇ´Â °ÍÀ» ¹æÁö
+  START WITH 1               -- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+  INCREMENT BY 1           -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  MAXVALUE 9999999999  -- ï¿½Ö´ë°ª: 9999999 --> NUMBER(7) ï¿½ï¿½ï¿½ï¿½
+  CACHE 2                       -- 2ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+  NOCYCLE;                     -- ï¿½Ù½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
-/* µî·Ï */
+/* ï¿½ï¿½ï¿½ */
 INSERT INTO nbgrp(nbgrpno, name, rdate)
-VALUES(nbgrp_seq.nextval, '³ëÆ®ºÏ', sysdate);
+VALUES(nbgrp_seq.nextval, 'ï¿½ï¿½Æ®ï¿½ï¿½', sysdate);
 
-/* ¸ñ·Ï */
+/* ï¿½ï¿½ï¿½ */
 SELECT nbgrpno, name, rdate
 FROM nbgrp
 ORDER BY nbgrpno ASC;
 
-/* Á¶È¸ */
+/* ï¿½ï¿½È¸ */
 SELECT nbgrpno, name, rdate 
 FROM nbgrp
 WHERE nbgrpno = 1;
 
-/* ¼öÁ¤ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 UPDATE nbgrp
-SET name='µ¥½ºÅ©Å¾'
+SET name='ï¿½ï¿½ï¿½ï¿½Å©Å¾'
 WHERE nbgrpno = 1;
 
-/* »èÁ¦ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 DELETE FROM nbgrp
 WHERE nbgrpno = 1;
 
 
 /**********************************/
-/* Table Name: ³ëÆ®ºÏ Á¾·ù */
+/* Table Name: ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 /**********************************/
 CREATE TABLE nbtype(
 		nbno                          		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
@@ -55,22 +55,24 @@ CREATE TABLE nbtype(
   FOREIGN KEY (nbgrpno) REFERENCES nbgrp (nbgrpno)
 );
 
-COMMENT ON TABLE nbtype is '³ëÆ®ºÏ Á¾·ù';
-COMMENT ON COLUMN nbtype.nbno is '³ëÆ®ºÏ ¹øÈ£';
-COMMENT ON COLUMN nbtype.nbgrpno is '³ëÆ®ºÏ ±×·ì ¹øÈ£';
-COMMENT ON COLUMN nbtype.name is '±â´Éº°ÀÌ¸§';
-COMMENT ON COLUMN nbtype.rdate is 'µî·ÏÀÏ';
+COMMENT ON TABLE nbtype is 'ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN nbtype.nbno is 'ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN nbtype.nbgrpno is 'ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½×·ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN nbtype.name is 'ï¿½ï¿½Éºï¿½ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN nbtype.rdate is 'ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 CREATE SEQUENCE nbtype_seq
-  START WITH 1               -- ½ÃÀÛ ¹øÈ£
-  INCREMENT BY 1           -- Áõ°¡°ª
-  MAXVALUE 9999999999  -- ÃÖ´ë°ª: 9999999 --> NUMBER(7) ´ëÀÀ
-  CACHE 2                       -- 2¹øÀº ¸Þ¸ð¸®¿¡¼­¸¸ °è»ê
-  NOCYCLE;                     -- ´Ù½Ã 1ºÎÅÍ »ý¼ºµÇ´Â °ÍÀ» ¹æÁö
+  START WITH 1               -- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+  INCREMENT BY 1           -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  MAXVALUE 9999999999  -- ï¿½Ö´ë°ª: 9999999 --> NUMBER(7) ï¿½ï¿½ï¿½ï¿½
+  CACHE 2                       -- 2ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+  NOCYCLE;                     -- ï¿½Ù½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
+INSERT INTO nbtype(nbno, nbgrpno, name, rdate)
+VALUES(nbtype_seq.nextval, 3, 'ê²Œìž„ìš©', sysdate);
 
 /**********************************/
-/* Table Name: ÄÁÅÙÃ÷ - ¸ÆºÏ »óÇ° */
+/* Table Name: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Æºï¿½ ï¿½ï¿½Ç° */
 /**********************************/
 CREATE TABLE CONTENTS(
 		CONTENTSNO                    		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
@@ -94,33 +96,33 @@ CREATE TABLE CONTENTS(
   FOREIGN KEY (nbno) REFERENCES nbtype (nbno)
 );
 
-COMMENT ON TABLE CONTENTS is 'ÄÁÅÙÃ÷ - ¸ÆºÏ »óÇ°';
-COMMENT ON COLUMN CONTENTS.CONTENTSNO is 'ÄÁÅÙÃ÷ ¹øÈ£';
-COMMENT ON COLUMN CONTENTS.nbno is '³ëÆ®ºÏ ¹øÈ£';
-COMMENT ON COLUMN CONTENTS.TITLE is '»óÇ°¸í';
-COMMENT ON COLUMN CONTENTS.CONTENT is '³»¿ë';
-COMMENT ON COLUMN CONTENTS.RECOM is 'ÃßÃµ¼ö';
-COMMENT ON COLUMN CONTENTS.CNT is 'Á¶È¸¼ö';
-COMMENT ON COLUMN CONTENTS.PASSWD is 'ÆÐ½º¿öµå';
-COMMENT ON COLUMN CONTENTS.WORD is '°Ë»ö¾î';
-COMMENT ON COLUMN CONTENTS.RDATE is 'µî·ÏÀÏ';
-COMMENT ON COLUMN CONTENTS.FILE1 is '¸ÞÀÎ ÀÌ¹ÌÁö';
-COMMENT ON COLUMN CONTENTS.FILE1SAVED is '½ÇÁ¦ ÀúÀåµÈ ¸ÞÀÎ ÀÌ¹ÌÁö';
-COMMENT ON COLUMN CONTENTS.THUMB1 is '¸ÞÀÎ ÀÌ¹ÌÁö Preview';
-COMMENT ON COLUMN CONTENTS.SIZE1 is '¸ÞÀÎ ÀÌ¹ÌÁö Å©±â';
-COMMENT ON COLUMN CONTENTS.PRICE is 'Á¤°¡';
-COMMENT ON COLUMN CONTENTS.DC is 'ÇÒÀÎ·ü';
-COMMENT ON COLUMN CONTENTS.SALEPRICE is 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN CONTENTS.POINT is 'Æ÷ÀÎÆ®';
-COMMENT ON COLUMN CONTENTS.SALECNT is '¼ö·®';
+COMMENT ON TABLE CONTENTS is 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Æºï¿½ ï¿½ï¿½Ç°';
+COMMENT ON COLUMN CONTENTS.CONTENTSNO is 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN CONTENTS.nbno is 'ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN CONTENTS.TITLE is 'ï¿½ï¿½Ç°ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.CONTENT is 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.RECOM is 'ï¿½ï¿½Ãµï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.CNT is 'ï¿½ï¿½È¸ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.PASSWD is 'ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.WORD is 'ï¿½Ë»ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.RDATE is 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.FILE1 is 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.FILE1SAVED is 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.THUMB1 is 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Preview';
+COMMENT ON COLUMN CONTENTS.SIZE1 is 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Å©ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.PRICE is 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN CONTENTS.DC is 'ï¿½ï¿½ï¿½Î·ï¿½';
+COMMENT ON COLUMN CONTENTS.SALEPRICE is 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN CONTENTS.POINT is 'ï¿½ï¿½ï¿½ï¿½Æ®';
+COMMENT ON COLUMN CONTENTS.SALECNT is 'ï¿½ï¿½ï¿½ï¿½';
 
 drop SEQUENCE contents_seq
 CREATE SEQUENCE contents_seq
-  START WITH 1               -- ½ÃÀÛ ¹øÈ£
-  INCREMENT BY 1           -- Áõ°¡°ª
-  MAXVALUE 9999999999  -- ÃÖ´ë°ª: 9999999 --> NUMBER(7) ´ëÀÀ
-  CACHE 2                       -- 2¹øÀº ¸Þ¸ð¸®¿¡¼­¸¸ °è»ê
-  NOCYCLE;                     -- ´Ù½Ã 1ºÎÅÍ »ý¼ºµÇ´Â °ÍÀ» ¹æÁö
+  START WITH 1               -- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+  INCREMENT BY 1           -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  MAXVALUE 9999999999  -- ï¿½Ö´ë°ª: 9999999 --> NUMBER(7) ï¿½ï¿½ï¿½ï¿½
+  CACHE 2                       -- 2ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+  NOCYCLE;                     -- ï¿½Ù½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 

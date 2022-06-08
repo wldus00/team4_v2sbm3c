@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.nb.NbDAOInter">
+  <insert id="create" parameterType="dev.mvc.nb.NbVO">
+    INSERT INTO nbtype(nbno, nbgrpno, name, rdate)
+    VALUES(nbtype_seq.nextval, #{nbgrpno}, #{name}, sysdate)
+  </insert> 
+  
+  <!-- 
+  전체 목록
+  레코드 갯수 만큼 nbVO 객체를 만들어 ArrayList에 저장하여 리턴,
+  List<nbVO> list = new ArrayList<nbVO>(); 
+  -->
+  <select id="list_all" resultType="dev.mvc.nb.NbVO">
+    SELECT nbno, nbgrpno, name, rdate
+    FROM nbtype
+    ORDER BY nbno ASC
+  </select>
+  
+  <!-- 카테고리 그룹별 목록 -->
+  <select id="list_by_nbgrpno" resultType="dev.mvc.nb.NbVO" parameterType="int">
+    SELECT nbno, nbgrpno, name, rdate
+    FROM nbtype
+    WHERE nbgrpno = #{nbgrpno}
+    ORDER BY nbno ASC
+  </select>
+  
+  <!-- nbgrp + nb join, 연결 목록 -->
+  <select id="list_all_join" resultType="dev.mvc.nb.Nbgrp_NbVO">
+    SELECT r.nbgrpno as r_nbgrpno, r.name as r_name,
+               c.nbno, c.nbgrpno, c.name, c.rdate
+    FROM nbgrp r, nb c
+    WHERE r.nbgrpno = c.nbgrpno
+    ORDER BY nbgrpno ASC, nbno ASC
+  </select>
+  
+  <!-- 조회, id: read, 입력: nbno, 리턴: nbVO -->
+  <select id="read" resultType="dev.mvc.nb.NbVO" parameterType="int">
+    SELECT nbno, nbgrpno, name, rdate
+    FROM nbtype
+    WHERE nbno=#{nbno}
+  </select>  
+  
+  <update id="update" parameterType="dev.mvc.nb.NbVO">
+    UPDATE nbtype
+    SET nbgrpno=#{nbgrpno}, name=#{name}
+    WHERE nbno = #{nbno}
+  </update>
+  
+  <!-- 삭제, return: int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM nbtype
+    WHERE nbno = #{nbno}
+  </delete>
+  
+  <!-- 특정 그룹에 속한 레코드 갯수 산출 -->
+  <select id="count_by_nbgrpno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt 
+    FROM nbtype 
+    WHERE nbgrpno=#{nbgrpno}
+  </select>
+  
+  
+</mapper>
