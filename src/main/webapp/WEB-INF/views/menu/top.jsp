@@ -14,24 +14,24 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">상품</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href='/healthgrp/list.do'>카테고리 그룹</a>
-                            <a class="dropdown-item" href='/healthcate/list_all.do'>카테고리 전체</a>
-                            <a class="dropdown-item"  href='/healthcate/list_all_join.do'>카테고리 전체 Join</a>
+                            <a class="dropdown-item" href='/nbgrp/list.do'>카테고리 그룹</a>
+                            <a class="dropdown-item" href=''>카테고리 전체</a>
+                            <a class="dropdown-item"  href=''>카테고리 전체 Join</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">즐겨찾기</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href='/urlgrp/list.do'>즐겨찾기</a>
-                            <a class="dropdown-item" href='/url/list_all.do'>즐겨찾기 전체</a>
-                            <a class="dropdown-item"  href='/url/list_all_join.do'>즐겨찾기 전체 Join</a>
+                            <a class="dropdown-item" href=''>즐겨찾기</a>
+                            <a class="dropdown-item" href=''>즐겨찾기 전체</a>
+                            <a class="dropdown-item"  href=''>즐겨찾기 전체 Join</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href='/ytgrp/list.do'>Youtube</a>
+                        <a class="nav-link" href=''>Youtube</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href='/memo/list_by_memo.do'>메모장</a>
+                        <a class="nav-link" href=''>메모장</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">회원</a>
@@ -50,10 +50,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href='/healthgrp/list.do'>카테고리 그룹</a>
-                            <a class="dropdown-item" href='/healthcate/list_all.do'>카테고리 전체</a>
-                            <a class="dropdown-item"  href='/healthcate/list_all_join.do'>카테고리 전체 Join</a>
-                            <a class="dropdown-item" href='/ytgrp/list.do'>Youtube</a>
+                            <a class="dropdown-item" href='/nbgrp/list_ajax.do'>카테고리 그룹</a>
+                            <a class="dropdown-item" href=''>카테고리 전체</a>
+                            <a class="dropdown-item"  href=''>카테고리 전체 Join</a>
+                            <a class="dropdown-item" href=''>Youtube</a>
                             <a class="dropdown-item" href="/member/list.do">회원 목록</a>
                         </div>
                     </li>                    
