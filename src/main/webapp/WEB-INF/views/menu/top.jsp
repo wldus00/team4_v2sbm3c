@@ -15,8 +15,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">상품</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href='/nbgrp/list.do'>카테고리 그룹</a>
-                            <a class="dropdown-item" href=''>카테고리 전체</a>
-                            <a class="dropdown-item"  href=''>카테고리 전체 Join</a>
+                            <a class="dropdown-item" href='/nb/list_all.do'>카테고리 전체</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -26,12 +25,6 @@
                             <a class="dropdown-item" href=''>즐겨찾기 전체</a>
                             <a class="dropdown-item"  href=''>즐겨찾기 전체 Join</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=''>Youtube</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=''>메모장</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">회원</a>

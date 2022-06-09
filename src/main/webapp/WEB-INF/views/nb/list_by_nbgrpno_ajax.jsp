@@ -13,6 +13,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 <script type="text/javascript">
@@ -46,12 +48,10 @@
                 let nbgrpno = rdata.nbgrpno;
                 let rdate = rdata.rdate;
                 let name = rdata.name;
-                let cnt = rdata.cnt;
                 let nbno = rdata.nbno;
 
               let frm_update = $('#frm_update');
               $('#nbno', frm_update).val(nbno);
-              $('#cnt', frm_update).val(cnt);
               $('#name', frm_update).val(name);
               $('#rdate', frm_update).val(rdate);
               $('#nbgrpno', frm_update).val(nbgrpno);
@@ -106,7 +106,6 @@
             // {"nbgrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
         	  let nbgrpno = rdata.nbgrpno;
               let name = rdata.name;
-              let cnt = rdata.cnt;
               let nbno = rdata.nbno;
             // var rdate = rdata.rdate;
             let count_by_nbno = parseInt(rdata.count_by_nbno); // 카테고리 그룹에 속한 카테고리수
@@ -169,8 +168,7 @@
     <FORM name='frm_update' id='frm_update' method='POST' action='./update.do'>
       <input type="hidden" name="nbno" id="nbno" value="">
       
-      <label>카테고리 그룹 번호</label>
-      <input type='number' name='nbgrpno' id='nbgrpno' value='' 
+      <input type='hidden' name='nbgrpno' id='nbgrpno' value='' 
                  required="required" min="1" max="100" step="1" autofocus="autofocus">
       <label>카테고리 이름</label>
       <input type='text' name='name' id='name' value='' required="required" style='width: 25%;'>  
@@ -213,8 +211,8 @@
    
     <thead>  
     <TR>
-      <TH class="th_bs">카테고리<br> 번호</TH>
       <TH class="th_bs">카테고리<br> 그룹 번호</TH>
+      <TH class="th_bs">카테고리<br> 번호</TH>
       <TH class="th_bs">카테고리 이름</TH>
       <TH class="th_bs">등록일</TH>
       <TH class="th_bs">기타</TH>
@@ -225,14 +223,14 @@
     <c:forEach var="nbVO" items="${list}">
       <c:set var="nbno" value="${nbVO.nbno }" />
       <TR>
-        <TD class="td_bs">${nbVO.nbno }</TD>
         <TD class="td_bs">${nbVO.nbgrpno }</TD>
-        <TD class="td_bs_left"><a href="../contents/list_by_nbno_search_paging.do?nbno=${nbno}&now_page=1">${nbVO.name }</a></TD>
+        <TD class="td_bs">${nbVO.nbno }</TD>
+        <TD class="td_bs_left" style='text-align: center;'><a href="../contents/list_by_nbno_search_paging.do?nbno=${nbno}&now_page=1">${nbVO.name }</a></TD>
         <TD class="td_bs">${nbVO.rdate.substring(0, 10) }</TD>
         <TD class="td_bs">
-          <A href="../contents/create.do?nbno=${nbno }" title="${name }등록"><i class="fa-solid fa-circle-plus"></i></A>
-          <A href="javascript: read_update_ajax(${nbno })" title="수정"><i class="fa-solid fa-pen"></i></A>
-          <A href="javascript: read_delete_ajax(${nbno })" title="삭제"><i class="fa-solid fa-trash"></i></A>
+          <A href="../contents/create.do?nbno=${nbno }" title="${name }등록"><i class="fa-solid fa-pen-to-square"></i></i></A>
+          <A href="javascript: read_update_ajax(${nbno })" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>
+          <A href="javascript: read_delete_ajax(${nbno })" title="삭제"><i class="fa-solid fa-eraser"></i></A>
         </TD>   
       </TR>   
     </c:forEach> 
