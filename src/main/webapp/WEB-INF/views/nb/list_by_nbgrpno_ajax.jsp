@@ -225,7 +225,7 @@
       <TR>
         <TD class="td_bs">${nbVO.nbgrpno }</TD>
         <TD class="td_bs">${nbVO.nbno }</TD>
-        <TD class="td_bs_left" style='text-align: center;'><a href="../contents/list_by_nbno_search_paging.do?nbno=${nbno}&now_page=1">${nbVO.name }</a></TD>
+        <TD class="td_bs_left" style='text-align: center;'><a href="../contents/list_paging.do?nbno=${nbno}&now_page=1">${nbVO.name }</a></TD>
         <TD class="td_bs">${nbVO.rdate.substring(0, 10) }</TD>
         <TD class="td_bs">
           <A href="../contents/create.do?nbno=${nbno }" title="${name }등록"><i class="fa-solid fa-pen-to-square"></i></i></A>

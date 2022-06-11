@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>회원목록</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -101,8 +101,8 @@
   </TABLE>
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.href='./create.do'" class="btn btn-primary">등록</button>
-    <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
+    <button type='button' onclick="location.href='./create.do'" class="btn btn-info">등록</button>
+    <button type='button' onclick="location.reload();" class="btn btn-info">새로 고침</button>
   </DIV>
 </DIV>
  

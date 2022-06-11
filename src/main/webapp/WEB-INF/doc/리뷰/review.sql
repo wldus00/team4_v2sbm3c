@@ -40,6 +40,7 @@ COMMENT ON COLUMN member.MEMBERNO is '회원 번호';
 /**********************************/
 /* Table Name: 리뷰 */
 /**********************************/
+drop table review;
 CREATE TABLE REVIEW(
 		reviewno                      		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		rdate                         		DATE		 NOT NULL,

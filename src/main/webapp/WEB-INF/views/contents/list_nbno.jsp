@@ -17,8 +17,7 @@
     
 <script type="text/javascript">
  
-
-
+  
 </script>
  
 </head> 
@@ -38,7 +37,7 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_grid1.do?nbno=${nbVO.nbno }">갤러리형</A>
+    <A href="./list_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
   </ASIDE> 
 
   <DIV class='menu_line'></DIV>
@@ -101,4 +100,3 @@
 </body>
  
 </html>
-

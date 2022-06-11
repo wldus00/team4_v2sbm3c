@@ -12,15 +12,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <selectKey keyProperty="contentsno" resultType="int" order="BEFORE">
       SELECT contents_seq.nextval FROM dual
     </selectKey> 
-    INSERT INTO contents(contentsno, adminno, nbno, title, content, passwd, word,
+    INSERT INTO contents(contentsno, nbno, title, content, passwd, word,
                                      file1, file1saved, thumb1, size1, rdate)
-    VALUES(#{contentsno}, #{adminno}, #{nbno}, #{title}, #{content}, #{passwd}, #{word},
+    VALUES(#{contentsno}, #{nbno}, #{title}, #{content}, #{passwd}, #{word},
                 #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
   </insert>
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.contents.ContentsVO" parameterType="int">
-    SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, passwd, word, rdate,
+    SELECT contentsno, nbno, title, content, recom, cnt, passwd, word, rdate,
               file1, file1saved, thumb1, size1, price, dc, saleprice, point, salecnt
     FROM contents
     WHERE contentsno = #{contentsno}
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_nbno" resultType="dev.mvc.contents.ContentsVO" parameterType="int">
-    SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, rdate,
+    SELECT contentsno, nbno, title, content, recom, cnt, rdate,
               file1, file1saved, thumb1, size1, price, dc, saleprice, point
     FROM contents 
     WHERE nbno = #{nbno}
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 목록 -->
   <select id="list_by_nbno_search" resultType="dev.mvc.contents.ContentsVO" 
              parameterType="HashMap">
-    SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, rdate,
+    SELECT contentsno, nbno, title, content, recom, cnt, rdate,
             file1, file1saved, thumb1, size1, price, dc, saleprice, point
     FROM contents
     <choose>
@@ -80,13 +80,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 -->   
   <select id="list_by_nbno_search_paging" 
              resultType="dev.mvc.contents.ContentsVO" parameterType="HashMap">
-   SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, rdate,
+   SELECT contentsno, nbno, title, content, recom, cnt, rdate,
               file1, file1saved, thumb1, size1, price, dc, saleprice, point, r
    FROM (
-              SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, rdate,
+              SELECT contentsno, nbno, title, content, recom, cnt, rdate,
                          file1, file1saved, thumb1, size1, price, dc, saleprice, point, rownum as r
               FROM (
-                        SELECT contentsno, adminno, nbno, title, content, recom, cnt, replycnt, rdate,
+                        SELECT contentsno, nbno, title, content, recom, cnt, rdate,
                                    file1, file1saved, thumb1, size1, price, dc, saleprice, point
                         FROM contents
                         <choose>

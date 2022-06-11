@@ -4,28 +4,27 @@
 <DIV class='container_main'> 
     <!-- 헤더 -->
     <div class="header">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="/">Resort</a>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #000066">
+            <a class="navbar-brand" href="/">노트북 쇼핑몰</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle Navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>    
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">상품</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">PRODUCT</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/nbgrp/list.do">카테고리 그룹</a>
+                            <a class="dropdown-item" href="/nbgrp/list.do">카테고리</a>
                             <a class="dropdown-item" href="/nb/list_all.do">카테고리 전체 목록</a>
-                            <a class="dropdown-item" href="/nb/list_all_join.do">카테고리 전체 목록 Join</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/cart/list_by_memberno.do">쇼핑카트</a>
+                        <a class="nav-link" href="/cart/list_by_memberno.do">장바구니</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/order_pay/list_by_memberno.do">주문 결재</a>
+                        <a class="nav-link" href="/order_pay/list_by_memberno.do">주문 결제</a>
                     </li>                    
-                    <li class="nav-item">
+                    <li class="nav-item label_basic">
                         <c:choose>
                             <c:when test="${sessionScope.id == null}">
                                 <a class="nav-link" href="/member/login.do">로그인</a>
@@ -46,19 +45,18 @@
                             <a class="dropdown-item" href="#">회원 탈퇴</a>
                         </div>
                     </li>
-                    <c:choose>
-                        <c:when test="${sessionScope.grade < 10}"> <%-- 로그인 한 경우 --%>                    
+                    <%-- <c:choose> --%>
+                        <%-- <c:when test="${sessionScope.grade < 10}"> 로그인 한 경우 --%>             
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/nbgrp/list.do">카테고리 그룹</a>
                                     <a class="dropdown-item" href="/nb/list_all.do">카테고리 전체 목록</a>
-                                    <a class="dropdown-item" href="/nb/list_all_join.do">카테고리 전체 목록 Join</a>
                                     <a class="dropdown-item" href="/member/list.do">회원 목록</a>
                                 </div>
                             </li>
-                        </c:when>
-                    </c:choose>                    
+                        <%-- </c:when> --%>
+                    <%-- </c:choose> --%>                    
                 </ul>
             </div>    
         </nav>

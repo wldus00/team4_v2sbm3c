@@ -13,23 +13,22 @@
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
 <script type="text/javascript">
  
   
 </script>
  
 </head> 
-  
+ 
 <body>
 <jsp:include page="../menu/top.jsp" />
  
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
-  <A href="./list_by_nbno_search_paging.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
+  <A href="./list_by_nbno_search.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
@@ -38,21 +37,24 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
+    <A href="./list_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
   </ASIDE> 
 
-  <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_nbno_search_paging.do'>
+  <%-- ******************** 검색 시작 ******************** --%>
+  <DIV style="text-align: right;">  
+    <form name='frm' id='frm' method='get' action='./list_by_nbno_search.do'>
       <input type='hidden' name='nbno' value='${nbVO.nbno }'>
-      <input type='hidden' name='now_page' value='1'> <%-- 최초 검색시 시작 페이지 지정 --%>
       <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
       <button type='submit'>검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list_by_nbno_search_paging.do?nbno=${nbVO.nbno}&word='">검색 취소</button>  
-      </c:if>    
+                onclick="location.href='./list_by_nbno_search.do?nbno=${nbVO.nbno}&word='">검색 취소</button>  
+      </c:if> 
+      &nbsp;   
     </form>
   </DIV>
+  
+  <%-- ******************** 검색 종료 ******************** --%>
   
   <DIV class='menu_line'></DIV>
   
@@ -78,16 +80,7 @@
     <tbody>
       <c:forEach var="contentsVO" items="${list }">
         <c:set var="contentsno" value="${contentsVO.contentsno }" />
-        <c:set var="nbno" value="${contentsVO.nbno }" />
-        <c:set var="title" value="${contentsVO.title }" />
-        <c:set var="content" value="${contentsVO.content }" />
-        <c:set var="file1" value="${contentsVO.file1 }" />
         <c:set var="thumb1" value="${contentsVO.thumb1 }" />
-        
-        <c:set var="price" value="${contentsVO.price }" />
-        <c:set var="dc" value="${contentsVO.dc }" />
-        <c:set var="saleprice" value="${contentsVO.saleprice }" />
-        <c:set var="point" value="${contentsVO.point }" />
         
         <tr> 
           <td style='vertical-align: middle; text-align: center;'>
@@ -102,28 +95,20 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'>
-            <a href="./read.do?contentsno=${contentsno}&now_page=${param.now_page }&word=${param.word }"><strong>${title}</strong> ${content}</a> 
+            <a href="./read.do?contentsno=${contentsno}"><strong>${contentsVO.title}</strong> ${contentsVO.content}</a> 
           </td> 
           <td style='vertical-align: middle; text-align: center;'>
-            <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
-            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
-            <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
-            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
+            <del><fmt:formatNumber value="${contentsVO.price}" pattern="#,###" /></del><br>
+            <span style="color: #FF0000; font-size: 1.2em;">${contentsVO.dc} %</span>
+            <strong><fmt:formatNumber value="${contentsVO.saleprice}" pattern="#,###" /></strong><br>
+            <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${contentsVO.point}" pattern="#,###" /></span>
           </td>
-          <td style='vertical-align: middle; text-align: center;'>
-            <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><img src='/contents/images/update.png'></A>
-            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><img src='/contents/images/delete.png'></A>
-          </td>
+          <td style='vertical-align: middle; text-align: center;'>수정/삭제<br>상품 정보</td>
         </tr>
       </c:forEach>
       
     </tbody>
   </table>
-  
-  <!-- 페이지 목록 출력 부분 시작 -->
-  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
-  <!-- 페이지 목록 출력 부분 종료 -->
-  
 </DIV>
 
  
@@ -131,6 +116,3 @@
 </body>
  
 </html>
-
- 
- 

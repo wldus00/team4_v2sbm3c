@@ -1,6 +1,9 @@
 /**********************************/
 /* Table Name: 회원 */
 /**********************************/
+DROP TABLE bulletin;
+DROP TABLE breakdown;
+DROP TABLE Member;
 CREATE TABLE Member(
 		MEMBERNO                      		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		ID                            		VARCHAR(20)		 NOT NULL UNIQUE,

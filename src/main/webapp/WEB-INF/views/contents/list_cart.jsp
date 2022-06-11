@@ -178,7 +178,7 @@
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
-  <A href="./list_by_nbno_search_paging.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
+  <A href="./list_paging.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
@@ -187,17 +187,17 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
+    <A href="./list_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
   </ASIDE> 
 
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_nbno_search_paging.do'>
+    <form name='frm' id='frm' method='get' action='./list_paging.do'>
       <input type='hidden' name='nbno' value='${nbVO.nbno }'>
       <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
       <button type='submit'>검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list_by_nbno_search_paging.do?nbno=${nbVO.nbno}&word='">검색 취소</button>  
+                     onclick="location.href='./list_paging.do?nbno=${nbVO.nbno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>

@@ -27,13 +27,13 @@
 				position: relative; /* 속해 있는 부모 태그 기준 설정 */
 				top: 1%;
 				left: 0.5%;
-				color: #FFFFFF;
+				color: #9999FF;
 }
 
 .top_menu {
 				position: relative; /* 부모 태그 기준, 화면 상단 기준*/
 				top: 50%;
-				background-color: rgba(50, 50, 255, 0.3); /* 0.3: Alpha, 투명도 */
+				background-color: rgba(153, 153, 255, 0.3); /* 0.3: Alpha, 투명도 */
 				color: white;
 				padding-left: 10px;
 				height: 25px;
@@ -368,13 +368,14 @@ A:active { /* A 태그를 클릭한 상태 */
 }
 
 .label_basic {
-				width: 200px;
-				background-color: #99cc00;
-				color: #FFFFFF;
+				width: 500px;
+				background-color: #000066;
+				color: #000066;
 				font-weight: normal;
 				display: inline-block; /* DIV 태그처럼 한줄의 영역을 블럭 영역으로 확장 표시 */
 				text-align: right;
 				padding-right: 10px;
+				
 }
 
 /* 기타 메시지 */

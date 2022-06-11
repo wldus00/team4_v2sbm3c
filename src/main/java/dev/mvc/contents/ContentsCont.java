@@ -219,17 +219,17 @@ public class ContentsCont {
     }
 
     /**
-     * 카테고리별 컨텐츠 목록 http://localhost:9091/contents/list_by_nbno.do?nbno=1
+     * 카테고리별 컨텐츠 목록 http://localhost:9091/contents/list_nbno.do?nbno=1
      * 
      * @return
      */
-    @RequestMapping(value = "/contents/list_by_nbno.do", method = RequestMethod.GET)
-    public ModelAndView list_by_nbno(int nbno) {
+    @RequestMapping(value = "/contents/list_nbno.do", method = RequestMethod.GET)
+    public ModelAndView list_nbno(int nbno) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/contents/list_by_nbno");
+        mav.setViewName("/contents/list_nbno");
 
-        // 테이블 이미지 기반, /webapp/contents/list_by_nbno.jsp
-        mav.setViewName("/contents/list_by_nbno");
+        // 테이블 이미지 기반, /webapp/contents/list_nbno.jsp
+        mav.setViewName("/contents/list_nbno");
 
         NbVO nbVO = this.nbProc.read(nbno);
         mav.addObject("nbVO", nbVO);
@@ -269,14 +269,14 @@ public class ContentsCont {
 
     /**
      * 목록 + 검색 지원
-     * http://localhost:9091/contents/list_by_nbno_search.do?nbno=1&word=스위스
+     * http://localhost:9091/contents/list_search.do?nbno=1&word=스위스
      * 
      * @param nbno
      * @param word
      * @return
      */
-    @RequestMapping(value = "/contents/list_by_nbno_search.do", method = RequestMethod.GET)
-    public ModelAndView list_by_nbno_search(@RequestParam(value = "nbno", defaultValue = "1") int nbno,
+    @RequestMapping(value = "/contents/list_search.do", method = RequestMethod.GET)
+    public ModelAndView list_search(@RequestParam(value = "nbno", defaultValue = "1") int nbno,
             @RequestParam(value = "word", defaultValue = "") String word) {
 
         ModelAndView mav = new ModelAndView();
@@ -300,7 +300,7 @@ public class ContentsCont {
         NbgrpVO nbgrpVO = this.nbgrpProc.read(nbVO.getNbgrpno());
         mav.addObject("nbgrpVO", nbgrpVO);
 
-        mav.setViewName("/contents/list_by_nbno_search"); 
+        mav.setViewName("/contents/list_search"); 
 
         return mav;
     }
@@ -308,20 +308,20 @@ public class ContentsCont {
 
     /**
      * 목록 + 검색 + 페이징 + Cookie 지원
-     * http://localhost:9091/contents/list_by_nbno_search_paging.do?nbno=1&word=스위스&now_page=1
+     * http://localhost:9091/contents/list_paging.do?nbno=1&word=스위스&now_page=1
      * 
      * @param nbno
      * @param word
      * @param now_page
      * @return
      */
-    @RequestMapping(value = "/contents/list_by_nbno_search_paging.do", method = RequestMethod.GET)
-    public ModelAndView list_by_nbno_search_paging_cookie(
+    @RequestMapping(value = "/contents/list_paging.do", method = RequestMethod.GET)
+    public ModelAndView list_cookie(
         @RequestParam(value = "nbno", defaultValue = "1") int nbno,
         @RequestParam(value = "word", defaultValue = "") String word,
         @RequestParam(value = "now_page", defaultValue = "1") int now_page,
         HttpServletRequest request) {
-      System.out.println("-> list_by_nbno_search_paging now_page: " + now_page);
+      System.out.println("-> list_paging now_page: " + now_page);
 
       ModelAndView mav = new ModelAndView();
 
@@ -362,7 +362,7 @@ public class ContentsCont {
 
       // /views/contents/list_by_nbno_search_paging_cookie.jsp
       // mav.setViewName("/contents/list_by_nbno_search_paging_cookie");
-      mav.setViewName("/contents/list_by_nbno_search_paging_cookie_cart");
+      mav.setViewName("/contents/list_cart");
 
       // -------------------------------------------------------------------------------
       // 쇼핑 카트 장바구니에 상품 등록전 로그인 폼 출력 관련 쿠기  
@@ -407,12 +407,12 @@ public class ContentsCont {
     
     
     /**
-     * Grid 형태의 화면 구성 http://localhost:9091/contents/list_by_nbno_grid.do
+     * Grid 형태의 화면 구성 http://localhost:9091/contents/list_grid.do
      * 
      * @return
      */
-    @RequestMapping(value = "/contents/list_by_nbno_grid.do", method = RequestMethod.GET)
-    public ModelAndView list_by_nbno_grid(int nbno) {
+    @RequestMapping(value = "/contents/list_grid.do", method = RequestMethod.GET)
+    public ModelAndView list_grid(int nbno) {
       ModelAndView mav = new ModelAndView();
       
       NbVO nbVO = this.nbProc.read(nbno);
@@ -425,7 +425,7 @@ public class ContentsCont {
       mav.addObject("list", list);
 
       // 테이블 이미지 기반, /webapp/contents/list_by_nbno_grid.jsp
-      mav.setViewName("/contents/list_by_nbno_grid");
+      mav.setViewName("/contents/list_grid");
 
       return mav; // forward
     }
@@ -707,7 +707,7 @@ public class ContentsCont {
           // -------------------------------------------------------------------------------------
  
           mav.addObject("now_page", now_page);
-          mav.setViewName("redirect:/contents/list_by_nbno_search_paging.do"); // redirect: param.now_page
+          mav.setViewName("redirect:/contents/list_paging.do"); // redirect: param.now_page
 
       } else { // 패스워드 오류
           mav.addObject("cnt", cnt);

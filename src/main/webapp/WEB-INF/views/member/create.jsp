@@ -134,7 +134,7 @@ function send() { // 회원 가입 처리
     </DIV>
     <FORM name='frm' id='frm' method='POST' action='./create.do' class="form-horizontal">
     <div class="form-group">
-      <label for="id" class="col-md-2 control-label" style='font-size: 0.9em;'>ID</label>    
+      <label for="id" class="col-md-2 control-label" style='font-size: 0.9em; '>ID</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='id' id='id' 
                    value='' style='width: 30%;' placeholder="아이디" autofocus="autofocus">

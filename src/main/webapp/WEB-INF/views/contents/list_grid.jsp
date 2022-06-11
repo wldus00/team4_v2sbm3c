@@ -38,7 +38,7 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_search_paging.do?nbno=${nbVO.nbno }">기본 목록형</A>
+    <A href="./list_paging.do?nbno=${nbVO.nbno }">기본 목록형</A>
   </ASIDE> 
 
   <DIV class='menu_line'></DIV>
