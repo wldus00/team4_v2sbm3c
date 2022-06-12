@@ -1,0 +1,34 @@
+/**********************************/
+/* Table Name: 공지사항 */
+/**********************************/
+CREATE TABLE notice(
+		noticeno                      		NUMBER(10)		 NOT NULL,
+		memberno                      		INTEGER(10)		 NOT NULL,
+		title                         		VARCHAR2(300)		 NOT NULL,
+		content                       		CLOB		 NOT NULL,
+		file1                         		VARCHAR2(100)		 NULL ,
+		file1saved                    		VARCHAR2(100)		 NULL ,
+		thumb1                        		VARCHAR2(100)		 NULL ,
+		size1                         		NUMBER(10)		 NULL ,
+		rdate                         		DATE		 NOT NULL,
+  PRIMARY KEY (noticeno, memberno)
+);
+
+COMMENT ON TABLE notice is '공지사항';
+COMMENT ON COLUMN notice.noticeno is '공지사항번호';
+COMMENT ON COLUMN notice.memberno is '회원 번호';
+COMMENT ON COLUMN notice.title is '제목';
+COMMENT ON COLUMN notice.content is '내용';
+COMMENT ON COLUMN notice.file1 is '메인 이미지';
+COMMENT ON COLUMN notice.file1saved is '실제 저장된 메인 이미지';
+COMMENT ON COLUMN notice.thumb1 is '메인 이미지 Preview';
+COMMENT ON COLUMN notice.size1 is '파일 사이즈';
+COMMENT ON COLUMN notice.rdate is '등록일';
+
+DROP SEQUENCE notice_seq;
+CREATE SEQUENCE notice_seq
+  START WITH 1              -- 시작 번호
+  INCREMENT BY 1          -- 증가값
+  MAXVALUE 9999999999 -- 최대값: 9999999999
+  CACHE 2                     -- 2번은 메모리에서만 계산
+  NOCYCLE;                   -- 다시 1부터 생성되는 것을 방지
