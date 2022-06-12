@@ -10,7 +10,8 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
 <title>노트북 쇼핑몰</title>
 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
+ 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -18,131 +19,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-</head>
-
-<script type="text/javascript">
-    $(function() {
-        $('#btn_create_cancel').on('click', cancel);
-        $('#btn_update_cancel').on('click', cancel);
-        $('#btn_delete_cancel').on('click', cancel);
-    });
-
-    function read_update_ajax(nbgrpno) { // 수정
-        // console.log('update');
-        $('#panel_create').css('display', 'none'); // 태그 감추기
-        $('#panel_update').css('display', ''); // 태그 출력 
-
-        // console.log('-> nbgrpno:' + nbgrpno);
-        let params = "";
-        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-        params = 'nbgrpno=' + nbgrpno; // 공백이 값으로 있으면 안됨.
-
-        $.ajax({
-            url : '/nbgrp/read_ajax.do',
-            type : 'get', // get, post
-            cache : false, // 응답 결과 임시 저장 취소
-            async : true, // true: 비동기 통신
-            dataType : 'json', // 응답 형식: json, html, xml...
-            data : params, // 데이터
-            success : function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
-                // {"categrpno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
-                let nbgrpno = rdata.nbgrpno;
-                let name = rdata.name;
-                let rdate = rdata.rdate;
-
-                let frm_update = $('#frm_update'); // id가 frm_update인 태그
-                $('#nbgrpno', frm_update).val(nbgrpno); // frm_update 폼에서 id가 categrpno인 태그
-                $('#name', frm_update).val(name);
-                $('#rdate', frm_update).val(rdate);
-
-                // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-                // console.log('-> btn_recom: ' + $('#btn_recom').html());
-                // $('#btn_recom').html('♥('+rdata.recom+')');
-                $('#span_animation').hide();
-            },
-            // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-            error : function(request, status, error) { // callback 함수
-                console.log(error);
-            }
-        }); //  $.ajax END
-
-        $('#span_animation').css('text-align', 'center');
-        $('#span_animation').html(
-                "<img src='/nbgrp/images/ani03.gif' style='width: 3%;'>");
-        $('#span_animation').show(); // 숨겨진 태그의 출력
-
-    }
-
-    function cancel() { // 초기 상태로 변경
-        $('#panel_create').css('display', '');
-        $('#panel_update').css('display', 'none'); // 태그 출력
-        $('#panel_delete').css('display', 'none'); // 태그 출력 
-    }
-
-    // 삭제 폼(자식 레코드가 없는 경우의 삭제)
-    function read_delete_ajax(nbgrpno) {
-        $('#msg_count_by_nbgrpno').hide();
-        $('#btn_submit').show(); // 삭제 버튼 출력
-
-        $('#panel_create').css("display", "none"); // 태그를 숨김
-        $('#panel_update').css("display", "none"); // 태그를 숨김  
-        $('#panel_delete').css("display", ""); // show, 숨겨진 태그 출력 
-        // return;
-
-        // console.log('-> categrpno:' + categrpno);
-        let params = "";
-        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-        params = 'nbgrpno=' + nbgrpno; // 공백이 값으로 있으면 안됨.
-
-        $.ajax({
-            url : '/nbgrp/read_ajax2.do',
-            type : 'get', // get, post
-            cache : false, // 응답 결과 임시 저장 취소
-            async : true, // true: 비동기 통신
-            dataType : 'json', // 응답 형식: json, html, xml...
-            data : params, // 데이터
-            success : function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
-                // {"categrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
-                let categrpno = rdata.nbgrpno;
-                let name = rdata.name;
-                // var rdate = rdata.rdate;
-                let count_by_nbgrpno = parseInt(rdata.count_by_nbgrpno); // 카테고리 그룹에 속한 카테고리수
-                console.log('count_by_nbgrpno: ' + count_by_nbgrpno);
-
-                let frm_delete = $('#frm_delete');
-                $('#nbgrpno', frm_delete).val(nbgrpno);
-
-                $('#frm_delete_name').html(name); // <label>그룹 이름</label><span id='frm_delete_name'></span>  
-
-                if (count_by_nbgrpno > 0) { // 자식 레코드가 있다면
-                    $('#msg_count_by_nbgrpno').show();
-                    $('#btn_submit').hide(); // 삭제 버튼 숨기기
-                } else {
-                    $('#msg_count_by_nbgrpno').hide();
-                    $('#btn_submit').show(); // 삭제 버튼 출력
-                }
-
-                $('#span_animation_delete').hide();
-            },
-            error : function(request, status, error) { // callback 함수
-                console.log(error);
-            }
-        }); //  $.ajax END
-
-        $('#span_animation_delete').css('text-align', 'center');
-        $('#span_animation_delete').html(
-                "<img src='/nbgrp/images/ani03.gif' style='width: 3%;'>");
-        $('#span_animation_delete').show(); // 숨겨진 태그의 출력
-    }
-</script>
- 
 </head> 
  
 <body>
-<jsp:include page="../menu/top.jsp" />
- 
-<DIV class='title_line'>카테고리 그룹</DIV>
-
+ <jsp:include page="../menu/top.jsp"  flush='false'/>
+ <div id="main">
+ <br>
+<DIV class='title_line'><strong>카테고리 그룹</strong></DIV>
 <DIV class='content_body'>
   <%-- 신규 등록 --%>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; 
@@ -234,9 +117,125 @@
    
   </TABLE>
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
+
+<script type="text/javascript">
+    $(function() {
+        $('#btn_create_cancel').on('click', cancel);
+        $('#btn_update_cancel').on('click', cancel);
+        $('#btn_delete_cancel').on('click', cancel);
+    });
+
+    function read_update_ajax(nbgrpno) { // 수정
+        // console.log('update');
+        $('#panel_create').css('display', 'none'); // 태그 감추기
+        $('#panel_update').css('display', ''); // 태그 출력 
+
+        // console.log('-> nbgrpno:' + nbgrpno);
+        let params = "";
+        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+        params = 'nbgrpno=' + nbgrpno; // 공백이 값으로 있으면 안됨.
+
+        $.ajax({
+            url : '/nbgrp/read_ajax.do',
+            type : 'get', // get, post
+            cache : false, // 응답 결과 임시 저장 취소
+            async : true, // true: 비동기 통신
+            dataType : 'json', // 응답 형식: json, html, xml...
+            data : params, // 데이터
+            success : function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
+                // {"categrpno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
+                let nbgrpno = rdata.nbgrpno;
+                let name = rdata.name;
+                let rdate = rdata.rdate;
+
+                let frm_update = $('#frm_update'); // id가 frm_update인 태그
+                $('#nbgrpno', frm_update).val(nbgrpno); // frm_update 폼에서 id가 categrpno인 태그
+                $('#name', frm_update).val(name);
+                $('#rdate', frm_update).val(rdate);
+
+                // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
+                // console.log('-> btn_recom: ' + $('#btn_recom').html());
+                // $('#btn_recom').html('♥('+rdata.recom+')');
+                $('#span_animation').hide();
+            },
+            // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+            error : function(request, status, error) { // callback 함수
+                console.log(error);
+            }
+        }); //  $.ajax END
+
+        $('#span_animation').css('text-align', 'center');
+        $('#span_animation').html(
+                "<img src='/nbgrp/images/ani03.gif' style='width: 30px; height: 30px;'>");
+        $('#span_animation').show(); // 숨겨진 태그의 출력
+
+    }
+
+    function cancel() { // 초기 상태로 변경
+        $('#panel_create').css('display', '');
+        $('#panel_update').css('display', 'none'); // 태그 출력
+        $('#panel_delete').css('display', 'none'); // 태그 출력 
+    }
+
+    // 삭제 폼(자식 레코드가 없는 경우의 삭제)
+    function read_delete_ajax(nbgrpno) {
+        $('#msg_count_by_nbgrpno').hide();
+        $('#btn_submit').show(); // 삭제 버튼 출력
+
+        $('#panel_create').css("display", "none"); // 태그를 숨김
+        $('#panel_update').css("display", "none"); // 태그를 숨김  
+        $('#panel_delete').css("display", ""); // show, 숨겨진 태그 출력 
+        // return;
+
+        // console.log('-> categrpno:' + categrpno);
+        let params = "";
+        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+        params = 'nbgrpno=' + nbgrpno; // 공백이 값으로 있으면 안됨.
+
+        $.ajax({
+            url : '/nbgrp/read_ajax2.do',
+            type : 'get', // get, post
+            cache : false, // 응답 결과 임시 저장 취소
+            async : true, // true: 비동기 통신
+            dataType : 'json', // 응답 형식: json, html, xml...
+            data : params, // 데이터
+            success : function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
+                // {"categrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
+                let categrpno = rdata.nbgrpno;
+                let name = rdata.name;
+                // var rdate = rdata.rdate;
+                let count_by_nbgrpno = parseInt(rdata.count_by_nbgrpno); // 카테고리 그룹에 속한 카테고리수
+                console.log('count_by_nbgrpno: ' + count_by_nbgrpno);
+
+                let frm_delete = $('#frm_delete');
+                $('#nbgrpno', frm_delete).val(nbgrpno);
+
+                $('#frm_delete_name').html(name); // <label>그룹 이름</label><span id='frm_delete_name'></span>  
+
+                if (count_by_nbgrpno > 0) { // 자식 레코드가 있다면
+                    $('#msg_count_by_nbgrpno').show();
+                    $('#btn_submit').hide(); // 삭제 버튼 숨기기
+                } else {
+                    $('#msg_count_by_nbgrpno').hide();
+                    $('#btn_submit').show(); // 삭제 버튼 출력
+                }
+
+                $('#span_animation_delete').hide();
+            },
+            error : function(request, status, error) { // callback 함수
+                console.log(error);
+            }
+        }); //  $.ajax END
+
+        $('#span_animation_delete').css('text-align', 'center');
+        $('#span_animation_delete').html(
+                "<img src='/nbgrp/images/ani03.gif' style='width: 30px; height: 30px;'>");
+        $('#span_animation_delete').show(); // 숨겨진 태그의 출력
+    }
+</script>
 </body>
  
 </html>

@@ -27,7 +27,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
- 
+<div id="main">
   <DIV class='title_line'>
     회원(관리자 전용)
   </DIV>
@@ -105,7 +105,7 @@
     <button type='button' onclick="location.reload();" class="btn btn-info">새로 고침</button>
   </DIV>
 </DIV>
- 
+ </div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  

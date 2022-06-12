@@ -8,7 +8,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>노트북 쇼핑몰</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
@@ -17,134 +17,16 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
-<script type="text/javascript">
-    $(function() {
-        $('#btn_create_cancel').on('click', cancel);
-        $('#btn_update_cancel').on('click', cancel);
-        $('#btn_delete_cancel').on('click', cancel);
-    });
-
-    function read_update_ajax(nbno) {
-        // console.log('update');
-        $('#panel_create').css('display', 'none');
-        $('#panel_update').css('display', '');
-        $('#panel_delete').css('display', 'none');
-
-        // console.log('-> nbno:' + nbno);
-        var params = "";
-        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-        params = 'nbno=' + nbno; // 공백이 값으로 있으면 안됨.
-
-        $.ajax(
-          {
-            url: '/nb/read_ajax.do',
-            type: 'get',  // get, post
-            cache: false, // 응답 결과 임시 저장 취소
-            async: true,  // true: 비동기 통신
-            dataType: 'json', // 응답 형식: json, html, xml...
-            data: params,      // 데이터
-            success: function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
-              // {"nbgrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
-                let nbgrpno = rdata.nbgrpno;
-                let rdate = rdata.rdate;
-                let name = rdata.name;
-                let nbno = rdata.nbno;
-
-              let frm_update = $('#frm_update');
-              $('#nbno', frm_update).val(nbno);
-              $('#name', frm_update).val(name);
-              $('#rdate', frm_update).val(rdate);
-              $('#nbgrpno', frm_update).val(nbgrpno);
-              
-              // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-              // console.log('-> btn_recom: ' + $('#btn_recom').html());
-              // $('#btn_recom').html('♥('+rdata.recom+')');
-              $('#span_animation').hide();
-            },
-            // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-            error: function(request, status, error) { // callback 함수
-              console.log(error);
-            }
-          }
-        );  //  $.ajax END
-
-        $('#span_animation').css('text-align', 'center');
-        $('#span_animation').html("<img src='/contents/images/ani03.gif' style='width: 3.5%;'>");
-        $('#span_animation').show(); // 숨겨진 태그의 출력
-    }
-
-    function cancel() {
-        $('#panel_create').css('display', '');
-        $('#panel_update').css('display', 'none');
-        $('#panel_delete').css('display', 'none');
-    }
-
-    // 삭제 폼(자식 레코드가 없는 경우의 삭제)
-    function read_delete_ajax(nbno) {
-      $('#msg_count_by_nbno').hide();
-      $('#btn_submit').show();
-      
-      $('#panel_create').css("display","none"); // hide, 태그를 숨김
-      $('#panel_update').css("display","none"); // hide, 태그를 숨김  
-      $('#panel_delete').css("display",""); // show, 숨겨진 태그 출력 
-      // return;
-      
-      // console.log('-> nbgrpno:' + nbgrpno);
-      var params = "";
-      // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-      params = 'nbno=' + nbno; // 공백이 값으로 있으면 안됨.
-      
-      $.ajax(
-        {
-          url: '/nb/read_ajax2.do',
-          type: 'get',  // get, post
-          cache: false, // 응답 결과 임시 저장 취소
-          async: true,  // true: 비동기 통신
-          dataType: 'json', // 응답 형식: json, html, xml...
-          data: params,      // 데이터
-          success: function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
-            // {"nbgrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
-        	  let nbgrpno = rdata.nbgrpno;
-              let name = rdata.name;
-              let nbno = rdata.nbno;
-            // var rdate = rdata.rdate;
-            let count_by_nbno = parseInt(rdata.count_by_nbno); // 카테고리 그룹에 속한 카테고리수
-            console.log('count_by_nbno: ' + count_by_nbno);
-
-            let frm_delete = $('#frm_delete');
-            $('#nbno', frm_delete).val(nbno);
-            $('#frm_delete_nbgrpno').html(nbgrpno);
-            $('#frm_delete_name').html(name);  // <label>그룹 이름</label><span id='frm_delete_name'></span>  
-            
-            if (count_by_nbno > 0) { // 자식 레코드가 있다면
-              $('#msg_count_by_nbno').show();
-              $('#btn_submit').hide();
-            } else {
-              $('#msg_count_by_nbno').hide();
-              $('#btn_submit').show();
-            }
-            // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
-            // console.log('-> btn_recom: ' + $('#btn_recom').html());
-            // $('#btn_recom').html('♥('+rdata.recom+')');
-            $('#span_animation_delete').hide();
-          },
-          error: function(request, status, error) { // callback 함수
-            console.log(error);
-          }
-        }
-      );  //  $.ajax END
-      $('#span_animation_delete').css('text-align', 'center');
-      $('#span_animation_delete').html("<img src='/contents/images/ani03.gif' style='width: 3.5%;'>");
-      $('#span_animation_delete').show(); // 숨겨진 태그의 출력
-    }
-</script>
  
 </head> 
  
 <body>
 <jsp:include page="../menu/top.jsp" />
- 
-<DIV class='title_line'><A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > ${nbgrpVO.name }</DIV>
+<div id="main">
+<br>
+<DIV class='title_line'>
+  <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > ${nbgrpVO.name }
+</DIV>
 
 <DIV class='content_body'>
 
@@ -238,9 +120,130 @@
    
   </TABLE>
 </DIV>
-
- 
+</div>
 <jsp:include page="../menu/bottom.jsp" />
+
+<script type="text/javascript">
+    $(function() {
+        $('#btn_create_cancel').on('click', cancel);
+        $('#btn_update_cancel').on('click', cancel);
+        $('#btn_delete_cancel').on('click', cancel);
+    });
+
+    function read_update_ajax(nbno) {
+        // console.log('update');
+        $('#panel_create').css('display', 'none');
+        $('#panel_update').css('display', '');
+        $('#panel_delete').css('display', 'none');
+
+        // console.log('-> nbno:' + nbno);
+        var params = "";
+        // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+        params = 'nbno=' + nbno; // 공백이 값으로 있으면 안됨.
+
+        $.ajax(
+          {
+            url: '/nb/read_ajax.do',
+            type: 'get',  // get, post
+            cache: false, // 응답 결과 임시 저장 취소
+            async: true,  // true: 비동기 통신
+            dataType: 'json', // 응답 형식: json, html, xml...
+            data: params,      // 데이터
+            success: function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
+              // {"nbgrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
+                let nbgrpno = rdata.nbgrpno;
+                let rdate = rdata.rdate;
+                let name = rdata.name;
+                let nbno = rdata.nbno;
+
+              let frm_update = $('#frm_update');
+              $('#nbno', frm_update).val(nbno);
+              $('#name', frm_update).val(name);
+              $('#rdate', frm_update).val(rdate);
+              $('#nbgrpno', frm_update).val(nbgrpno);
+              
+              // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
+              // console.log('-> btn_recom: ' + $('#btn_recom').html());
+              // $('#btn_recom').html('♥('+rdata.recom+')');
+              $('#span_animation').hide();
+            },
+            // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+            error: function(request, status, error) { // callback 함수
+              console.log(error);
+            }
+          }
+        );  //  $.ajax END
+
+        $('#span_animation').css('text-align', 'center');
+        $('#span_animation').html("<img src='/contents/images/ani03.gif' style='width: 30px; height: 30px;'>");
+        $('#span_animation').show(); // 숨겨진 태그의 출력
+    }
+
+    function cancel() {
+        $('#panel_create').css('display', '');
+        $('#panel_update').css('display', 'none');
+        $('#panel_delete').css('display', 'none');
+    }
+
+    // 삭제 폼(자식 레코드가 없는 경우의 삭제)
+    function read_delete_ajax(nbno) {
+      $('#msg_count_by_nbno').hide();
+      $('#btn_submit').show();
+      
+      $('#panel_create').css("display","none"); // hide, 태그를 숨김
+      $('#panel_update').css("display","none"); // hide, 태그를 숨김  
+      $('#panel_delete').css("display",""); // show, 숨겨진 태그 출력 
+      // return;
+      
+      // console.log('-> nbgrpno:' + nbgrpno);
+      var params = "";
+      // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+      params = 'nbno=' + nbno; // 공백이 값으로 있으면 안됨.
+      
+      $.ajax(
+        {
+          url: '/nb/read_ajax2.do',
+          type: 'get',  // get, post
+          cache: false, // 응답 결과 임시 저장 취소
+          async: true,  // true: 비동기 통신
+          dataType: 'json', // 응답 형식: json, html, xml...
+          data: params,      // 데이터
+          success: function(rdata) { // 응답이 온경우, Spring에서 하나의 객체를 전달한 경우 통문자열
+            // {"nbgrpno":1,"visible":"Y","seqno":1,"rdate":"2021-04-08 17:01:28","name":"문화"}
+              let nbgrpno = rdata.nbgrpno;
+              let name = rdata.name;
+              let nbno = rdata.nbno;
+            // var rdate = rdata.rdate;
+            let count_by_nbno = parseInt(rdata.count_by_nbno); // 카테고리 그룹에 속한 카테고리수
+            console.log('count_by_nbno: ' + count_by_nbno);
+
+            let frm_delete = $('#frm_delete');
+            $('#nbno', frm_delete).val(nbno);
+            $('#frm_delete_nbgrpno').html(nbgrpno);
+            $('#frm_delete_name').html(name);  // <label>그룹 이름</label><span id='frm_delete_name'></span>  
+            
+            if (count_by_nbno > 0) { // 자식 레코드가 있다면
+              $('#msg_count_by_nbno').show();
+              $('#btn_submit').hide();
+            } else {
+              $('#msg_count_by_nbno').hide();
+              $('#btn_submit').show();
+            }
+            // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
+            // console.log('-> btn_recom: ' + $('#btn_recom').html());
+            // $('#btn_recom').html('♥('+rdata.recom+')');
+            $('#span_animation_delete').hide();
+          },
+          error: function(request, status, error) { // callback 함수
+            console.log(error);
+          }
+        }
+      );  //  $.ajax END
+      $('#span_animation_delete').css('text-align', 'center');
+      $('#span_animation_delete').html("<img src='/contents/images/ani03.gif' style='width: 30px; height: 30px;'>");
+      $('#span_animation_delete').show(); // 숨겨진 태그의 출력
+    }
+</script>
 </body>
  
 </html>

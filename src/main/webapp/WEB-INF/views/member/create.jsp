@@ -11,102 +11,18 @@
     content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
 <title>회원가입</title>
 <!-- /static 기준 -->
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-
-<script type="text/javascript">
-$(function(){
-    $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
-    $('#btn_checkID').on('click', checkID); // 체크
-    $('#btn_send').on('click', send); // 가입 버튼
-});
-
-// jQuery ajax 요청
-function checkID() {
-  // $('#btn_close').attr("data-focus", "이동할 태그 지정");
-  
-  let frm = $('#frm'); // id가 frm인 태그 검색
-  let id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
-  let params = '';
-  let msg = '';
-
-  if ($.trim(id).length == 0) { // id를 입력받지 않은 경우
-    msg = '· ID를 입력하세요.<br>· ID 입력은 필수 입니다.<br>· ID는 3자이상 권장합니다.';
-    
-    $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-    $('#modal_title').html('ID 중복 확인'); // 제목 
-    $('#modal_content').html(msg);        // 내용
-    $('#btn_close').attr("data-focus", "id");  // 닫기 버튼 클릭시 id 입력으로 focus 이동
-    $('#modal_panel').modal();               // 다이얼로그 출력
-    return false;
-  } else {  // when ID is entered
-    params = 'id=' + id;
-    // var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
-    // alert('params: ' + params);
-
-    $.ajax({
-      url: './checkID.do', // spring execute
-      type: 'get',  // post
-      cache: false, // 응답 결과 임시 저장 취소
-      async: true,  // true: 비동기 통신
-      dataType: 'json', // 응답 형식: json, html, xml...
-      data: params,      // 데이터
-      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
-        var msg = "";
-        
-        if (rdata.cnt > 0) {
-          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-          msg = "이미 사용중인 ID 입니다.";
-          $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
-        } else {
-          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
-          msg = "사용 가능한 ID 입니다.";
-          $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
-          // $.cookie('checkId', 'TRUE'); // Cookie 기록
-        }
-        
-        $('#modal_title').html('ID 중복 확인'); // 제목 
-        $('#modal_content').html(msg);        // 내용
-        $('#modal_panel').modal();              // 다이얼로그 출력
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        console.log(error);
-      }
-    });
-    
-    // 처리중 출력
-/*     var gif = '';
-    gif +="<div style='margin: 0px auto; text-align: center;'>";
-    gif +="  <img src='/member/images/ani04.gif' style='width: 10%;'>";
-    gif +="</div>";
-    
-    $('#panel2').html(gif);
-    $('#panel2').show(); // 출력 */
-    
-  }
-
-}
-
-function send() { // 회원 가입 처리
-
-    $('#frm').submit();
-    
-  }
-
-
-</script>
 </head>
 
 <body>
     <jsp:include page="../menu/top.jsp" flush='false' />
-    
+    <div id="main">
       <!-- ******************** Modal 알림창 시작 ******************** -->
   <div id="modal_panel" class="modal fade"  role="dialog">
     <div class="modal-dialog">
@@ -278,9 +194,91 @@ function send() { // 회원 가입 처리
       </div>
     </div>   
   </FORM>
-
-
+  </div>
     <jsp:include page="../menu/bottom.jsp" flush='false' />
+    
+<script type="text/javascript">
+$(function(){
+    $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
+    $('#btn_checkID').on('click', checkID); // 체크
+    $('#btn_send').on('click', send); // 가입 버튼
+});
 
+// jQuery ajax 요청
+function checkID() {
+  // $('#btn_close').attr("data-focus", "이동할 태그 지정");
+  
+  let frm = $('#frm'); // id가 frm인 태그 검색
+  let id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
+  let params = '';
+  let msg = '';
+
+  if ($.trim(id).length == 0) { // id를 입력받지 않은 경우
+    msg = '· ID를 입력하세요.<br>· ID 입력은 필수 입니다.<br>· ID는 3자이상 권장합니다.';
+    
+    $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+    $('#modal_title').html('ID 중복 확인'); // 제목 
+    $('#modal_content').html(msg);        // 내용
+    $('#btn_close').attr("data-focus", "id");  // 닫기 버튼 클릭시 id 입력으로 focus 이동
+    $('#modal_panel').modal();               // 다이얼로그 출력
+    return false;
+  } else {  // when ID is entered
+    params = 'id=' + id;
+    // var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+    // alert('params: ' + params);
+
+    $.ajax({
+      url: './checkID.do', // spring execute
+      type: 'get',  // post
+      cache: false, // 응답 결과 임시 저장 취소
+      async: true,  // true: 비동기 통신
+      dataType: 'json', // 응답 형식: json, html, xml...
+      data: params,      // 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = "";
+        
+        if (rdata.cnt > 0) {
+          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+          msg = "이미 사용중인 ID 입니다.";
+          $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
+        } else {
+          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
+          msg = "사용 가능한 ID 입니다.";
+          $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
+          // $.cookie('checkId', 'TRUE'); // Cookie 기록
+        }
+        
+        $('#modal_title').html('ID 중복 확인'); // 제목 
+        $('#modal_content').html(msg);        // 내용
+        $('#modal_panel').modal();              // 다이얼로그 출력
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        console.log(error);
+      }
+    });
+    
+    // 처리중 출력
+/*     var gif = '';
+    gif +="<div style='margin: 0px auto; text-align: center;'>";
+    gif +="  <img src='/member/images/ani04.gif' style='width: 10%;'>";
+    gif +="</div>";
+    
+    $('#panel2').html(gif);
+    $('#panel2').show(); // 출력 */
+    
+  }
+
+}
+
+function send() { // 회원 가입 처리
+
+    $('#frm').submit();
+    
+  }
+
+
+</script>
 </body>
 </html>

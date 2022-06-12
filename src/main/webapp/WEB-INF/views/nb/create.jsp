@@ -8,7 +8,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>노트북 쇼핑몰</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -25,8 +25,9 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
- 
-<DIV class='title_line'>카테고리 등록</DIV>
+<div id="main">
+<br>
+<DIV class='title_line'><strong>카테고리 등록</strong></DIV>
 
 <DIV class='content_body'>
   <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
@@ -51,7 +52,7 @@
   
   </FORM>
 </DIV>
- 
+ </div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  

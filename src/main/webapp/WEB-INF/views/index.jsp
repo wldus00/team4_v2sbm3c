@@ -7,7 +7,8 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>노트북 쇼핑몰</title>
 <!-- /static 기준 -->
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <!-- <link href="/css/style.css" rel="Stylesheet" type="text/css"> -->
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,23 +20,16 @@
 </head>
 <body>
 <jsp:include page="./menu/top.jsp" flush='false' />
-  
-  <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
+    
+  <div id="main">
     <%-- /static/images/resort01.jpg --%>
-    <IMG src='/images/resort01.jpg' style='width: 50%;'>
-  </DIV>
+    <img src='./css/images/images.png'>
+  </div>
+
   
-  <DIV style='margin: 0px auto; width: 90%;'>
-    <DIV style='float: left; width: 50%;'>
-     </DIV>
-     <DIV style='float: left; width: 50%;'>
-    </DIV>  
-  </DIV>
- 
-  <DIV style='width: 94.8%; margin: 0px auto;'>
-  </DIV>  
- 
-<jsp:include page="./menu/bottom.jsp" flush='false' />
+  
+
+    <jsp:include page="./menu/bottom.jsp" flush='false' />
  
 </body>
 </html>

@@ -8,7 +8,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>노트북 쇼핑몰</title>
 <%-- /static/css/style.css --%> 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
 
 <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
 </head> 
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-
+<div id="main">
 <DIV class='title_line'>카테고리 > 알림</DIV>
 <%-- code: ${code } / cnt: ${cnt } --%>
 <DIV class='message'>
@@ -76,7 +76,7 @@
   </fieldset>
 
 </DIV>
-
+</div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 

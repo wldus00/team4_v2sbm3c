@@ -8,7 +8,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Resort world</title>
 <%-- /static/css/style.css --%> 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ <link href="/css/main.css" rel="Stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -20,7 +20,7 @@
 </head> 
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-
+<div id="main">
 <DIV class='title_line'>카테고리 그룹 > 알림</DIV>
 
 <DIV class='message'>
@@ -86,7 +86,7 @@
   </fieldset>
 
 </DIV>
-
+</div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 
