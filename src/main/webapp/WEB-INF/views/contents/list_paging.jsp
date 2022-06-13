@@ -9,11 +9,14 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Resort world</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link href="/css/main.css" rel="Stylesheet" type="text/css">
  
-<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 <script type="text/javascript">
  
@@ -110,8 +113,8 @@
             <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
           </td>
           <td style='vertical-align: middle; text-align: center;'>
-            <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><span class="glyphicon glyphicon-pencil"></span></A>
-            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><span class="glyphicon glyphicon-trash"></span></A>
+            <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><i class="fa-regular fa-pen-to-square"></i></A>
+            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><i class="fa-solid fa-eraser"></i></A>
           </td>
         </tr>
       </c:forEach>

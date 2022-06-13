@@ -9,12 +9,14 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>상품 목록, Cart</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 <script type="text/javascript">
 
@@ -316,8 +318,8 @@
                                     
           </td>
           <td style='vertical-align: middle; text-align: center;'>
-            <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><img src='/contents/images/update.png'></A>
-            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><img src='/contents/images/delete.png'></A>
+            <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><img src='/contents/images/update.png' style="width: 30%; height: 30%"></A>
+            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><img src='/contents/images/delete.png' style="width: 30%; height: 30%"></A>
           </td>
         </tr>
       </c:forEach>
