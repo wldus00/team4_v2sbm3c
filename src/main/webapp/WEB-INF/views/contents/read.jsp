@@ -22,15 +22,16 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>노트북 쇼핑몰</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link href="/css/main.css" rel="Stylesheet" type="text/css">
  
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 
 <script type="text/javascript">
   $(function(){
@@ -46,7 +47,7 @@
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
-  <A href="./list_by_nbno_search_paging.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
+  <A href="./list_paging.do?nbno=${nbVO.nbno }" class='title_link'>${nbVO.name }</A>
 </DIV>
 
 <DIV class='content_body'>
@@ -55,9 +56,9 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_search_paging.do?nbno=${nbVO.nbno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
+    <A href="./list_paging.do?nbno=${nbVO.nbno }&now_page=${param.now_page}&word=${param.word }">기본 목록형</A>    
     <span class='menu_divide' >│</span>
-    <A href="./list_by_nbno_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
+    <A href="./list_grid.do?nbno=${nbVO.nbno }">갤러리형</A>
     <span class='menu_divide' >│</span>
     <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page}&word=${param.word }">수정</A>
     <span class='menu_divide' >│</span>
@@ -67,7 +68,7 @@
   </ASIDE> 
   
   <DIV style="text-align: right; clear: both;">  
-    <form name='frm' id='frm' method='get' action='./list_by_nbno_search_paging.do'>
+    <form name='frm' id='frm' method='get' action='./list_paging.do'>
       <input type='hidden' name='nbno' value='${nbVO.nbno }'>
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
@@ -94,10 +95,10 @@
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/contents/storage/ --%>
-                <IMG src="/contents/storage/${file1saved }" style="width: 100%;"> 
+                <IMG src="/contents/storage/${file1saved }" style="width: 60%; height: 250px; margin-left: 70px;"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/contents/images/none1.png" style="width: 100%;"> 
+                <IMG src="/contents/images/none1.png" style="width: 60%; height: 250px; margin-left: 70px;"> 
               </c:otherwise>
             </c:choose>
         </DIV>
@@ -118,15 +119,15 @@
           </form>
         </DIV> 
 
-        <DIV>${content }</DIV>
+        <DIV style="margin-left: 30px;">${content }</DIV>
       </li>
       <li class="li_none">
-        <DIV style='text-decoration: none;'>
+        <DIV style='text-decoration: none; margin-left: 30px;'>
           검색어(키워드): ${word }
         </DIV>
       </li>
       <li class="li_none">
-        <DIV>
+        <DIV style="margin-left: 30px;">
           <c:if test="${file1.trim().length() > 0 }">
             첨부 파일: <A href='/download?dir=/contents/storage&filename=${file1saved}&downname=${file1}'>${file1}</A> (${size1_label})  
           </c:if>

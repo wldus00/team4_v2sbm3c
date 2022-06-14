@@ -74,25 +74,26 @@ VALUES(nbtype_seq.nextval, 3, '게임용', sysdate);
 /**********************************/
 /* Table Name: ������ - �ƺ� ��ǰ */
 /**********************************/
+drop table CONTENTS;
 CREATE TABLE CONTENTS(
-		CONTENTSNO                    		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		nbno                          		NUMBER(10)		 NOT NULL,
-		TITLE                         		VARCHAR2(300)		 NOT NULL,
-		CONTENT                       		CLOB  NOT NULL,
-		RECOM                         		NUMBER(7)		 NOT NULL,
-		CNT                           		NUMBER(7)		 NOT NULL,
-		PASSWD                        		VARCHAR2(15)		 NOT NULL,
-		WORD                          		VARCHAR2(300)		 NULL ,
-		RDATE                         		DATE		 NOT NULL,
-		FILE1                         		VARCHAR2(100)		 NULL ,
-		FILE1SAVED                    		VARCHAR2(100)		 NULL ,
-		THUMB1                        		VARCHAR2(100)		 NULL ,
-		SIZE1                         		NUMBER(10)		 NULL ,
-		PRICE                         		NUMBER(10)		 NULL ,
-		DC                            		NUMBER(10)		 NULL ,
-		SALEPRICE                     		NUMBER(10)		 NULL ,
-		POINT                         		NUMBER(10)		 NULL ,
-		SALECNT                       		NUMBER(10)		 NULL ,
+      CONTENTSNO                          NUMBER(10)       NOT NULL       PRIMARY KEY,
+      nbno                                NUMBER(10)       NOT NULL,
+      TITLE                               VARCHAR2(300)       NOT NULL,
+      CONTENT                             CLOB  NOT NULL,
+      RECOM                               NUMBER(7)       DEFAULT 0     NOT NULL,
+      CNT                                 NUMBER(7)      DEFAULT 0     NOT NULL,
+      PASSWD                              VARCHAR2(15)       NOT NULL,
+      WORD                                VARCHAR2(300)       NULL ,
+      RDATE                               DATE       NOT NULL,
+      FILE1                               VARCHAR2(100)       NULL ,
+      FILE1SAVED                          VARCHAR2(100)       NULL ,
+      THUMB1                              VARCHAR2(100)       NULL ,
+      SIZE1                               NUMBER(10)       NULL ,
+      PRICE                               NUMBER(10)       NULL ,
+      DC                                  NUMBER(10)       NULL ,
+      SALEPRICE                           NUMBER(10)       NULL ,
+      POINT                               NUMBER(10)       NULL ,
+      SALECNT                             NUMBER(10)       NULL ,
   FOREIGN KEY (nbno) REFERENCES nbtype (nbno)
 );
 

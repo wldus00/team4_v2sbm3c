@@ -243,7 +243,7 @@
    
     <div style='text-align: center; margin: 10px auto;'>
       <button type="button" id='btn_login' class="btn btn-info">로그인</button>
-      <button type='button' onclick="location.href='./create.do'" class="btn btn-info">회원가입</button>
+      <button type='button' onclick="location.href='../member/create.do'" class="btn btn-info">회원가입</button>
       <button type='button' id='btn_loadDefault' class="btn btn-info">테스트 계정</button>
       <button type='button' id='btn_cancel' class="btn btn-info" onclick="$('#div_login').hide();">취소</button>
     </div>
@@ -304,7 +304,7 @@
           </td> 
           <td style='vertical-align: middle; text-align: center;'>
             <del><fmt:formatNumber value="${price}" pattern="#,###" /></del><br>
-            <span style="color: #FF0000; font-size: 1.2em;">${dc} %</span>
+            <span style="color: #FF0000; font-size: 1.2em;">${dc}% </span>
             <strong><fmt:formatNumber value="${saleprice}" pattern="#,###" /></strong><br>
             <span style="font-size: 0.8em;">포인트: <fmt:formatNumber value="${point}" pattern="#,###" /></span>
             <span><A id="recom_${status.count }" href="javascript:recom_ajax(${contentsno }, ${status.count })" class="recom_link">♥(${recom })</A></span>
@@ -319,7 +319,8 @@
           </td>
           <td style='vertical-align: middle; text-align: center;'>
             <A href="./update_text.do?contentsno=${contentsno}&now_page=${param.now_page }"><img src='/contents/images/update.png' style="width: 30%; height: 30%"></A>
-            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><img src='/contents/images/delete.png' style="width: 30%; height: 30%"></A>
+            <A href="./delete.do?contentsno=${contentsno}&now_page=${param.now_page }&nbno=${nbno}"><img src='/contents/images/delete.png' style="width: 30%; height: 30%"></A><BR><br>
+            <span style="font-size: 25px;"><a href="../review/list_join.do?contentsno=${contentsno }" style="color: black">REVIEW</a></span>
           </td>
         </tr>
       </c:forEach>

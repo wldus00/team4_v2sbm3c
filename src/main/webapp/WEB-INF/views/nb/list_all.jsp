@@ -93,7 +93,7 @@
       <TR>
         <TD class="td_bs">${nbno }</TD>
         <TD class="td_bs">${nbgrpno }</TD>
-        <TD class="td_bs_left"><a href="../contents/list_by_nbno_search_paging.do?nbno=${nbno}&now_page=1">${name }</a></TD>
+        <TD class="td_bs_left"><a href="../contents/list_paging.do?nbno=${nbno}&now_page=1">${name }</a></TD>
         <TD class="td_bs">${rdate }</TD>
         <TD class="td_bs">
           <A href="javascript: read_update_ajax(${nbno })" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>

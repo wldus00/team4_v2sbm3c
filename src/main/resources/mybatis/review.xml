@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "dev.mvc.review.ReviewDAOInter">
+  <insert id="create">
+    INSERT INTO review(reviewno, contentsno, memberno, content, passwd, file1, file1saved, thumb1, size1, rdate)
+    VALUES(review_seq.nextval, #{contentsno}, #{memberno}, #{content}, #{passwd}, #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
+  </insert>
+  
+  <select id="list" resultType="dev.mvc.review.ReviewVO">
+    SELECT reviewno, contentsno, memberno, content, passwd, rdate
+    FROM review
+    ORDER BY reviewno DESC
+  </select>
+
+  <select id="list_join" resultType="dev.mvc.review.ReviewMemberVO" parameterType="int">
+    SELECT m.id,
+               r.reviewno, r.contentsno, r.memberno, r.content, r.passwd, r.rdate,
+               r.file1, r.file1saved, r.thumb1, r.size1
+    FROM member m,  review r
+    WHERE (m.memberno = r.memberno) AND r.contentsno=#{contentsno}
+    ORDER BY r.reviewno DESC
+  </select>
+  
+  <select id="checkPasswd" parameterType="Map" resultType="int">
+    SELECT COUNT(*) as cnt
+    FROM review
+    WHERE reviewno=#{reviewno} AND passwd=#{passwd}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM review
+    WHERE reviewno=#{reviewno}
+  </delete>
+    
+</mapper> 

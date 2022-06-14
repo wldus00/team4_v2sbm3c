@@ -10,7 +10,7 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
 <title>노트북 쇼핑몰</title>
 
- <link href="/css/main.css" rel="Stylesheet" type="text/css">
+<link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
