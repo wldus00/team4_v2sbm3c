@@ -20,6 +20,13 @@
                 <li><a href="#">마이페이지</a></li>
                 <li><a href="/cart/list_by_memberno.do">장바구니</a></li>
                 <li><a href="/order_pay/list_by_memberno.do">주문 결제</a></li>
+                <c:choose>
+                  <c:when test="${sessionScope.grade < 10}">
+                    <li class="nav-item dropdown">
+                      <a href="/member/list.do">관리자</a>
+                    </li>
+                  </c:when>
+                </c:choose>
             </ul>
         </div>
         <div class="header_title">
@@ -68,7 +75,7 @@
                     공지사항
                 </button>
                   <div class="dropdown-content">
-                    <a href="#">공지사항</a>
+                    <a href="/notice/list_by_notice.do">공지사항</a>
                   </div>
             </div>
             <div class="dropdown">

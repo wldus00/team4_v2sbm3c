@@ -181,8 +181,8 @@ img {
 #main {
     position: relative;
     margin: 0 auto;
-    width: 1200px;
-    height: 900px;
+    width: 70%;
+    height: 50%;
     text-align: center;
 }
 
@@ -212,8 +212,10 @@ img {
 }
 
 #footer {
-    overflow: hidden;
-    padding: 0 0 40px 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: #877e9e;
 }
 
@@ -258,5 +260,26 @@ img {
     float: left;
     padding: 0 15px 0 3px;
     color: #e2e2e2;
+}
+
+/* 회원 가입 부분 - 우편 번호 버튼 클릭 시  */
+
+#wrap {
+    display:none;
+    border:1px solid;
+    width:500px;
+    height:300px;
+    margin:5px 110px;
+    position:relative;
+}
+
+#wrap img {
+    cursor:pointer;
+    position:absolute;
+    right:0px;
+    top:-1px;
+    z-index:1;
+    width: 50px;
+    height: 48px;
 }
 

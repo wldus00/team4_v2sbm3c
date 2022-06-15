@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.notice.NoticeDAOInter"> 
+      <!-- 연속 입력 지원 등록: sequence가 SQL 실행전에 생성되어 ContentsVO에 저장 후 사용 -->
+  <insert id="create" parameterType="dev.mvc.notice.NoticeVO">
+    <selectKey keyProperty="noticeno" resultType="int" order="BEFORE">
+      SELECT notice_seq.nextval FROM dual
+    </selectKey>
+    
+    INSERT INTO notice(noticeno,MEMBERNO, title, content,
+                                     file1, file1saved, thumb1, size1, rdate)
+    VALUES(#{noticeno}, #{MEMBERNO}, #{title}, #{content},
+                #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
+  </insert>
+  
+  <!-- 일반적인 조회 -->
+  <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
+    SELECT noticeno, MEMBERNO, title, content, rdate,
+              file1, file1saved, thumb1, size1
+    FROM notice
+    WHERE noticeno = #{noticeno}
+  </select>
+  
+  <!-- 특정 카테고리의 등록된 글목록 -->
+  <select id="list_by_notice" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
+    SELECT noticeno, MEMBERNO, title, content, rdate,
+              file1, file1saved, thumb1, size1
+    FROM notice
+    ORDER BY noticeno DESC
+  </select>
+  
+      <!-- 패스워드 검사 -->
+  <select id="passwd_check" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt 
+    FROM notice
+    WHERE noticeno=#{noticeno}  
+  </select>
+  
+        <!-- 텍스트 수정 -->
+  <update id="update_text" parameterType="dev.mvc.notice.NoticeVO">
+    UPDATE notice
+    SET title=#{title}, content=#{content}
+    WHERE noticeno = #{noticeno}
+  </update>
+  
+      <!-- 파일 수정 -->
+  <update id="update_file" parameterType="dev.mvc.notice.NoticeVO">
+    UPDATE notice
+    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    WHERE noticeno = #{noticeno}
+  </update>
+  
+     <!-- 등록된 글삭제 -->
+    <delete id="delete" parameterType="int">
+    DELETE FROM notice
+    WHERE noticeno=#{noticeno}
+  </delete>
+</mapper>

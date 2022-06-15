@@ -1,9 +1,10 @@
 /**********************************/
 /* Table Name: 공지사항 */
 /**********************************/
+DROP TABLE notice;
 CREATE TABLE notice(
 		noticeno                      		NUMBER(10)		 NOT NULL,
-		memberno                      		INTEGER(10)		 NOT NULL,
+		MEMBERNO                      		NUMBER(10)		 NOT NULL,
 		title                         		VARCHAR2(300)		 NOT NULL,
 		content                       		CLOB		 NOT NULL,
 		file1                         		VARCHAR2(100)		 NULL ,
@@ -11,12 +12,12 @@ CREATE TABLE notice(
 		thumb1                        		VARCHAR2(100)		 NULL ,
 		size1                         		NUMBER(10)		 NULL ,
 		rdate                         		DATE		 NOT NULL,
-  PRIMARY KEY (noticeno, memberno)
+  PRIMARY KEY (noticeno, MEMBERNO)
 );
 
 COMMENT ON TABLE notice is '공지사항';
 COMMENT ON COLUMN notice.noticeno is '공지사항번호';
-COMMENT ON COLUMN notice.memberno is '회원 번호';
+COMMENT ON COLUMN notice.MEMBERNO is '회원 번호';
 COMMENT ON COLUMN notice.title is '제목';
 COMMENT ON COLUMN notice.content is '내용';
 COMMENT ON COLUMN notice.file1 is '메인 이미지';
