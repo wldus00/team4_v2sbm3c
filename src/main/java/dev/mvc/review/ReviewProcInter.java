@@ -13,5 +13,9 @@ public interface ReviewProcInter {
     public int checkPasswd(Map<String, Object> map);
       
     public int delete(int reviewno);
+    
+    public List<ReviewVO> list_memberno(int memberno);
+    
+    public ReviewVO read(int reviewno);
 
 }

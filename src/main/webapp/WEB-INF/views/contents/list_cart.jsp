@@ -10,7 +10,6 @@
 <title>상품 목록, Cart</title>
  
 <link href="/css/main.css" rel="Stylesheet" type="text/css">
- 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -79,7 +78,7 @@
     
     $.ajax(
       {
-        url: '/member/login_ajax.do',
+        url: '/member/login.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신

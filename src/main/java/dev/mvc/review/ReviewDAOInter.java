@@ -3,6 +3,8 @@ package dev.mvc.review;
 import java.util.List;
 import java.util.Map;
 
+import dev.mvc.contents.ContentsVO;
+
 public interface ReviewDAOInter {
     public int create(ReviewVO reviewVO);
 
@@ -14,5 +16,7 @@ public interface ReviewDAOInter {
       
     public int delete(int reviewno);
      
-     
+    public List<ReviewVO> list_memberno(int memberno);
+    
+    public ReviewVO read(int reviewno);
 }

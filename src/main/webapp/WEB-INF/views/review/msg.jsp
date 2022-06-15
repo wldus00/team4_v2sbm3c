@@ -82,7 +82,7 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./list_contentsno.do?contentsno=${param.contentsno}'" class="btn btn-primary">목록</button>
+        <button type='button' onclick="location.href='./list_join.do?contentsno=${param.contentsno}'" class="btn btn-primary">목록</button>
 
       </LI>
     </UL>

@@ -94,7 +94,7 @@
           </td>
           
           <td style='text-align: center; vertical-align: middle;'>
-              <button type="button" class="close" data-dismiss="modal">×</button>
+              <A href="./delete.do?reviewno=${reviewno}&contentsno=${contentsno}"><img src='/review/images/delete.png' style="width: 30%; height: 30%"></a>
           </td>
         </tr>
       </c:forEach>

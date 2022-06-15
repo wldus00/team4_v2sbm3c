@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     VALUES(review_seq.nextval, #{contentsno}, #{memberno}, #{content}, #{passwd}, #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
   </insert>
   
-  <select id="list" resultType="dev.mvc.review.ReviewVO">
+  <select id="list" resultType="dev.mvc.review.ReviewVO" >
     SELECT reviewno, contentsno, memberno, content, passwd, rdate
     FROM review
     ORDER BY reviewno DESC
@@ -34,5 +34,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM review
     WHERE reviewno=#{reviewno}
   </delete>
+  
+  <select id="list_memberno" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    SELECT reviewno, contentsno, memberno, content, passwd, rdate
+    FROM review
+    WHERE memberno=#{memberno}
+    ORDER BY reviewno ASC
+  </select>
+  
+  <select id="read" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    SELECT reviewno, contentsno, memberno, content, passwd, 
+                file1, file1saved, thumb1, size1, rdate
+    FROM review
+    WHERE reviewno = #{reviewno}
+  </select>
     
 </mapper> 

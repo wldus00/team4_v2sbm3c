@@ -71,7 +71,7 @@
     <input type="hidden" name="nbgrpno" value="${nbVO.nbgrpno }"> 
     <input type="hidden" name="nbno" value="${nbVO.nbno }">
     <input type="hidden" name="contentsno" value="${param.contentsno }">
-    <input type='hidden' name='memberno' id='memberno' value='1'>
+    <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno}'>
     
     <div class="form-group" style="width:70%">
        <label class="control-label col-md-2">이미지</label>

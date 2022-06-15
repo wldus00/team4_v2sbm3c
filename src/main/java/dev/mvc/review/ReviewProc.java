@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.contents.ContentsVO;
 import dev.mvc.tool.Tool;
 
 @Component("dev.mvc.review.ReviewProc")
@@ -50,6 +51,26 @@ public class ReviewProc implements ReviewProcInter {
   public int delete(int reviewno) {
       int count = reviewDAO.delete(reviewno);
       return count;
+  }
+
+  @Override
+  public List<ReviewVO> list_memberno(int memberno) {
+      List<ReviewVO> list = this.reviewDAO.list_memberno(memberno);
+      return list;
+  }
+  
+  @Override
+  public ReviewVO read(int reviewno) {
+      ReviewVO reviewVO = this.reviewDAO.read(reviewno);
+
+      String content = reviewVO.getContent();
+      content = Tool.convertChar(content);
+      reviewVO.setContent(content);
+
+      long size1 = reviewVO.getSize1();
+      reviewVO.setSize1_label(Tool.unit(size1));
+
+      return reviewVO;
   }
 
 }

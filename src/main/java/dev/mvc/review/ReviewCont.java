@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import dev.mvc.nbgrp.NbgrpProcInter;
 import dev.mvc.nbgrp.NbgrpVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
+import dev.mvc.contents.Contents;
 import dev.mvc.contents.ContentsProcInter;
 import dev.mvc.contents.ContentsVO;
 import dev.mvc.member.MemberProc;
@@ -172,26 +174,78 @@ public class ReviewCont {
     return mav; // forward 
   }
   
-  @ResponseBody
-  @RequestMapping(value = "/review/delete.do", 
-                              method = RequestMethod.POST,
-                              produces = "text/plain;charset=UTF-8")
-  public String delete(int reviewno, String passwd) {
-    HashMap<String, Object> map = new HashMap<String, Object>();
-    map.put("reviewno", reviewno);
-    map.put("passwd", passwd);
-    
-    int passwd_cnt = reviewProc.checkPasswd(map); // 패스워드 일치 여부, 1: 일치, 0: 불일치
-    int delete_cnt = 0;                                    // 삭제된 댓글
-    if (passwd_cnt == 1) { // 패스워드가 일치할 경우
-      delete_cnt = reviewProc.delete(reviewno); // 댓글 삭제
-    }
-    
-    JSONObject obj = new JSONObject();
-    obj.put("passwd_cnt", passwd_cnt); // 패스워드 일치 여부, 1: 일치, 0: 불일치
-    obj.put("delete_cnt", delete_cnt); // 삭제된 댓글
-    
-    return obj.toString();
+  @RequestMapping(value = "/review/list_memberno.do", method = RequestMethod.GET)
+  public ModelAndView list_memberno(int memberno) {
+      ModelAndView mav = new ModelAndView();
+      mav.setViewName("/review/list_memberno");
+
+      ContentsVO contentsVO = this.contentsProc.read(memberno);
+      NbVO nbVO = this.nbProc.read(contentsVO.getNbno());
+      NbgrpVO nbgrpVO = this.nbgrpProc.read(nbVO.getNbgrpno());
+
+      List<ReviewVO> list = this.reviewProc.list_memberno(memberno);
+      mav.addObject("list", list);
+
+      return mav; // forward
   }
+  
+  @RequestMapping(value="/review/delete.do", method=RequestMethod.GET )
+  public ModelAndView delete(int reviewno) { 
+    ModelAndView mav = new  ModelAndView();
+    
+    // 삭제할 정보를 조회하여 확인
+    ReviewVO reviewVO = this.reviewProc.read(reviewno);
+    ContentsVO contentsVO = this.contentsProc.read(reviewVO.getContentsno());
+    NbVO nbVO = this.nbProc.read(contentsVO.getNbno());
+    NbgrpVO nbgrpVO = this.nbgrpProc.read(nbVO.getNbgrpno());
+    
+    mav.addObject("reviewVO", reviewVO);
+    mav.addObject("contentsVO", contentsVO);
+    mav.addObject("nbVO", nbVO);
+    mav.addObject("nbgrpVO", nbgrpVO);
+    
+    mav.setViewName("/review/delete");  // contents/delete.jsp
+    
+    return mav; 
+  }
+
+  @RequestMapping(value = "/review/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(HttpServletRequest request, ReviewVO reviewVO) {
+    ModelAndView mav = new ModelAndView();
+    int reviewno = reviewVO.getReviewno();
+    
+    HashMap<String, Object> passwd_map = new HashMap<String, Object>();
+    passwd_map.put("reviewno", reviewVO.getReviewno());
+    passwd_map.put("passwd", reviewVO.getPasswd());
+    
+    int cnt = 0;
+    int passwd_cnt = this.reviewProc.checkPasswd(passwd_map);
+    if (passwd_cnt == 1) { // 패스워드 일치 -> 등록된 파일 삭제 -> 신규 파일 등록
+        ReviewVO vo = reviewProc.read(reviewno);
+        
+        String file1saved = vo.getFile1saved();
+        String thumb1 = vo.getThumb1();
+        long size1 = 0;
+        boolean sw = false;
+        
+        String upDir =  System.getProperty("user.dir") + "/src/main/resources/static/review/storage/"; // 절대 경로
+
+        sw = Tool.deleteFile(upDir, file1saved);  // Folder에서 1건의 파일 삭제
+        sw = Tool.deleteFile(upDir, thumb1);     // Folder에서 1건의 파일 삭제
+        
+        cnt = this.reviewProc.delete(reviewno); // DBMS 삭제
+
+        mav.setViewName("redirect:/review/list_join.do"); 
+
+    } else { // 패스워드 오류
+        mav.addObject("cnt", cnt);
+        mav.addObject("code", "passwd_fail");
+        mav.addObject("url", "/review/msg"); // msg.jsp, redirect parameter 적용
+        mav.setViewName("redirect:/review/msg.do");
+    }
+    mav.addObject("contentsno", reviewVO.getContentsno());
+    
+    return mav; // forward
+  }  
 
 }
