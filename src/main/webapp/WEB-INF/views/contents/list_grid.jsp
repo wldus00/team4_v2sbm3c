@@ -25,7 +25,6 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" />
-<div id="main">
  
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
@@ -104,11 +103,9 @@
 
 
 </DIV>
-</div>
-<jsp:include page="../menu/bottom.jsp" />
+
  
 
 </body>
- 
 </html>
 

@@ -137,7 +137,7 @@
                 <fmt:formatNumber value="${tot}" pattern="#,###" />
               </td>
               <td style='vertical-align: middle; text-align: center;'>
-                <A href="javascript: delete_func(${cartno })"><IMG src="/cart/images/delete3.png"></A>
+                <A href="javascript: delete_func(${cartno })"><IMG src="/cart/images/delete3.png" style="width: 40%; height: 30px"></A>
               </td>
             </tr>
           </c:forEach>

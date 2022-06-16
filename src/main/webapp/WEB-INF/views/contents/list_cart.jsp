@@ -78,7 +78,7 @@
     
     $.ajax(
       {
-        url: '/member/login.do',
+        url: '/member/login_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -258,18 +258,7 @@
       <col style="width: 20%;"></col>
       <col style="width: 10%;"></col>
     </colgroup>
-    <%-- table 컬럼 --%>
-<!--     <thead>
-      <tr>
-        <th style='text-align: center;'>파일</th>
-        <th style='text-align: center;'>상품명</th>
-        <th style='text-align: center;'>정가, 할인률, 판매가, 포인트</th>
-        <th style='text-align: center;'>기타</th>
-      </tr>
-    
-    </thead> -->
-    
-    <%-- table 내용 --%>
+
     <tbody>
       <c:forEach var="contentsVO" items="${list }" varStatus="status">
         <c:set var="contentsno" value="${contentsVO.contentsno }" />
@@ -311,9 +300,9 @@
             <%-- <span id="span_animation_${status.count }"></span> --%>
             <br>
             <button type='button' id='btn_cart' class="btn btn-info" style='margin-bottom: 2px;'
-                        onclick="cart_ajax(${contentsno })">장바 구니</button><br>
+                        onclick="cart_ajax(${contentsno })">장바구니</button><br>
             <button type='button' id='btn_ordering' class="btn btn-info" 
-                        onclick="cart_ajax(${contentsno })">바로 구매</button>  
+                        onclick="cart_ajax(${contentsno })">바로구매</button>  
                                     
           </td>
           <td style='vertical-align: middle; text-align: center;'>

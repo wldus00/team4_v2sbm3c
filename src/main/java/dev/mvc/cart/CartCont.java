@@ -40,7 +40,7 @@ public class CartCont {
       CartVO cartVO = new CartVO();
       cartVO.setContentsno(contentsno);
       
-      int memberno = (int) session.getAttribute("memberno");
+      int memberno = Integer.parseInt(String.valueOf(session.getAttribute("memberno")));
       cartVO.setMemberno(memberno);
       
       cartVO.setCnt(1); // 최초 구매 수량 1개로 지정

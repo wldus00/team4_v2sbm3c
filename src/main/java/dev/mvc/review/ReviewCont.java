@@ -174,6 +174,42 @@ public class ReviewCont {
     return mav; // forward 
   }
   
+  @RequestMapping(value = "/review/list_paging.do", method = RequestMethod.GET)
+  public ModelAndView list_paging(@RequestParam(value = "contentsno", defaultValue = "1") int contentsno,
+                                                                         @RequestParam(value = "content", defaultValue = "") String content,
+                                                                         @RequestParam(value = "now_page", defaultValue = "1") int now_page) {
+
+    ModelAndView mav = new ModelAndView();
+
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("contentsno", contentsno); // #{cateno}
+    map.put("content", content); // #{word}
+    map.put("now_page", now_page); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
+
+    List<ReviewMemberVO> list = reviewProc.list_paging(map);
+    mav.addObject("list", list);
+
+    // 검색된 레코드 갯수
+    int search_count = reviewProc.search_count(map);
+    mav.addObject("search_count", search_count);
+
+    ContentsVO contentsVO = this.contentsProc.read(contentsno);
+    NbVO nbVO = this.nbProc.read(contentsVO.getNbno());
+    NbgrpVO nbgrpVO = this.nbgrpProc.read(nbVO.getNbgrpno());
+    
+    mav.addObject("contentsVO", contentsVO);
+    mav.addObject("nbVO", nbVO);
+    mav.addObject("nbgrpVO", nbgrpVO);
+
+    String paging = reviewProc.pagingBox(contentsno, search_count, now_page, content);
+    mav.addObject("paging", paging);
+    mav.setViewName("/review/list_paging");
+
+    return mav;
+  }
+  
+  
+  
   @RequestMapping(value = "/review/list_memberno.do", method = RequestMethod.GET)
   public ModelAndView list_memberno(int memberno) {
       ModelAndView mav = new ModelAndView();

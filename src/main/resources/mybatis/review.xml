@@ -24,6 +24,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY r.reviewno DESC
   </select>
   
+  <select id="list_paging" 
+             resultType="dev.mvc.review.ReviewMemberVO" parameterType="HashMap">
+   SELECT reviewno, contentsno, memberno, content, passwd, file1, file1saved, thumb1, size1, rdate, r
+   FROM (
+              SELECT reviewno, contentsno, memberno, content, passwd, file1, file1saved, thumb1, size1, rdate, rownum as r
+              FROM (
+                        SELECT reviewno, contentsno, memberno, content, passwd, file1, file1saved, thumb1, size1, rdate
+                        FROM review
+                        <choose>
+                          <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
+                             WHERE contentsno=#{contentsno}
+                          </when>
+                          <otherwise>
+                            WHERE contentsno=#{contentsno} AND (UPPER(content) LIKE '%' || #{content} || '%' )
+                          </otherwise>
+                        </choose>
+                        ORDER BY reviewno DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+  </select>    
+  
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM review
+    <choose>
+      <when test="content == null or content == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+        WHERE contentsno=#{contentsno}
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE contentsno=#{contentsno} AND (UPPER(content) LIKE '%' || #{content} || '%' )
+      </otherwise>
+    </choose>
+  </select> 
+  
   <select id="checkPasswd" parameterType="Map" resultType="int">
     SELECT COUNT(*) as cnt
     FROM review
