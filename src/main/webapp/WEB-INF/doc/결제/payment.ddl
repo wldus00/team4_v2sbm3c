@@ -10,25 +10,6 @@ COMMENT ON COLUMN MEMBER.MEMBERNO is '회원 번호';
 
 
 /**********************************/
-/* Table Name: 주문 결제 */
-/**********************************/
-CREATE TABLE payment(
-		purchaseno                    		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		MEMBERNO                      		number(10)		 NOT NULL,
-		PAYMENTMANE                   		VARCHAR2(30)		 NOT NULL,
-		AMOUNTOFPAYMENT               		NUMBER(10)		 NOT NULL,
-  FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
-);
-
-COMMENT ON TABLE payment is '주문 결제';
-COMMENT ON COLUMN payment.purchaseno is '구매 번호';
-COMMENT ON COLUMN payment.MEMBERNO is '회원 번호';
-COMMENT ON COLUMN payment.PAYMENTMANE is '결재인 이름';
-COMMENT ON COLUMN payment.AMOUNTOFPAYMENT is '총 결제 금액';
-
-
-
-/**********************************/
 /* Table Name: 노트북 */
 /**********************************/
 CREATE TABLE NBGRP(
@@ -76,47 +57,60 @@ COMMENT ON COLUMN CONTENTS.NBNO is '노트북 번호';
 
 
 /**********************************/
-/* Table Name: 구매 기록 */
+/* Table Name: 주문 결제 */
 /**********************************/
-CREATE TABLE purchaseRecord(
-		purchaseno                    		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		MEMBERNO                      		NUMBER(10)		 NOT NULL,
+CREATE TABLE order_payment(
+		PURCHASENO                    		NUMERIC(10)		 NOT NULL		 PRIMARY KEY,
+		MEMBERNO                      		NUMERIC(10)		 NOT NULL,
+		RMANE                         		NUMERIC(30)		 NOT NULL,
+		RTEL                          		VARCHAR(15)		 NOT NULL,
+		RZIPCODE                      		VARCHAR(5)		 NULL ,
+		RADDRESS                      		VARCHAR(50)		 NOT NULL,
+		BRADDRESS                     		VARCHAR(30)		 NOT NULL,
+		PAYTYPE                       		NUMERIC(1)		 NOT NULL,
+		AMOUNT                        		NUMERIC(10)		 NOT NULL,
 		RDATE                         		DATE		 NOT NULL,
-		PURCHASECNT                    		NUMBER(10) DEFAULT 0 NOT NULL,		 
-		CONTENTSNO                    		NUMBER(10)		 NOT NULL,
-  FOREIGN KEY (CONTENTSNO) REFERENCES CONTENTS (CONTENTSNO),
   FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
-COMMENT ON TABLE purchaseRecord is '구매 기록';
-COMMENT ON COLUMN purchaseRecord.purchaseno is '구매 번호';
-COMMENT ON COLUMN purchaseRecord.MEMBERNO is '회원 번호';
-COMMENT ON COLUMN purchaseRecord.RDATE is '구매날짜';
-COMMENT ON COLUMN purchaseRecord.PURCHASECNT is '구매수량';
-COMMENT ON COLUMN purchaseRecord.CONTENTSNO is '컨텐츠 번호';
+COMMENT ON TABLE order_payment is '주문 결제';
+COMMENT ON COLUMN order_payment.PURCHASENO is '주문 번호';
+COMMENT ON COLUMN order_payment.MEMBERNO is '회원 번호';
+COMMENT ON COLUMN order_payment.RMANE is '수령자 이름';
+COMMENT ON COLUMN order_payment.RTEL is '수령자 전화번호';
+COMMENT ON COLUMN order_payment.RZIPCODE is '수령자 우편번호';
+COMMENT ON COLUMN order_payment.RADDRESS is '수령자 주소';
+COMMENT ON COLUMN order_payment.BRADDRESS is '수령자 상세주소';
+COMMENT ON COLUMN order_payment.PAYTYPE is '결재 종류';
+COMMENT ON COLUMN order_payment.AMOUNT is '총 결제 금액';
+COMMENT ON COLUMN order_payment.RDATE is '주문날짜';
 
 
 /**********************************/
 /* Table Name: 주문 상세 */
 /**********************************/
 CREATE TABLE order_details(
-		CONTENTSNO                    		NUMBER(10)		 NOT NULL,
-		MEMBERNO                      		NUMBER(10)		 NOT NULL,
-		purchaseno                    		NUMBER(10)		 NOT NULL,
+		ORDER_PRODUCT                 		NUMERIC(10)		 NOT NULL		 PRIMARY KEY,
+		CONTENTSNO                    		NUMERIC(10)		 NULL ,
+		MEMBERNO                      		NUMERIC(10)		 NULL ,
+		PURCHASENO                    		NUMERIC(10)		 NOT NULL,
+		CNT                           		NUMERIC(5)		 NOT NULL,
+		TOTEL                         		NUMERIC(10)		 NOT NULL,
+		STATENO                       		NUMERIC(1)		 NOT NULL,
 		RDATE                         		DATE		 NOT NULL,
-		PURCHASECNT                    		NUMBER(10) DEFAULT 0 NOT NULL,		
-  FOREIGN KEY (purchaseno) REFERENCES payment (purchaseno),
-  FOREIGN KEY (purchaseno) REFERENCES purchaseRecord (purchaseno),
+  FOREIGN KEY (PURCHASENO) REFERENCES order_payment (PURCHASENO),
   FOREIGN KEY (CONTENTSNO) REFERENCES CONTENTS (CONTENTSNO),
   FOREIGN KEY (MEMBERNO) REFERENCES MEMBER (MEMBERNO)
 );
 
 COMMENT ON TABLE order_details is '주문 상세';
+COMMENT ON COLUMN order_details.ORDER_PRODUCT is '주문상세번호';
 COMMENT ON COLUMN order_details.CONTENTSNO is '컨텐츠 번호';
 COMMENT ON COLUMN order_details.MEMBERNO is '회원 번호';
-COMMENT ON COLUMN order_details.purchaseno is '구매 번호';
-COMMENT ON COLUMN order_details.RDATE is '구매날짜';
-COMMENT ON COLUMN order_details.PURCHASENO is '구매수량';
+COMMENT ON COLUMN order_details.PURCHASENO is '주문 번호';
+COMMENT ON COLUMN order_details.CNT is '상품수량';
+COMMENT ON COLUMN order_details.TOTEL is '상품합계';
+COMMENT ON COLUMN order_details.STATENO is '주문상태';
+COMMENT ON COLUMN order_details.RDATE is '주문날짜';
 
-COMMIT;
 
