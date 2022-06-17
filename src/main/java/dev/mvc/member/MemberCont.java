@@ -62,9 +62,9 @@ public class MemberCont {
         System.out.println("가입 실패...");
     }
       mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+      mav.addObject("msg", "회원가입 성공!");
       
-      
-      mav.setViewName("redirect:/");
+      mav.setViewName("/member/msg");
       
       return mav;
     }
@@ -146,6 +146,7 @@ public class MemberCont {
         session.setAttribute("memberno", memberVO.getMemberno()); // 서버의 메모리에 기록
         session.setAttribute("id", id);
         session.setAttribute("username", memberVO.getUsername());
+        session.setAttribute("grade", memberVO.getGrade());
         
         // -------------------------------------------------------------------
         // id 관련 쿠기 저장
@@ -216,9 +217,9 @@ public class MemberCont {
     public ModelAndView logout(HttpSession session){
       ModelAndView mav = new ModelAndView();
       session.invalidate(); // 모든 session 변수 삭제
+      mav.addObject("msg", "로그아웃 성공");
       
-      
-      mav.setViewName("/member/logout"); // 새로고침 방지
+      mav.setViewName("/member/msg"); // 새로고침 방지
       
       return mav;
     }
@@ -248,8 +249,8 @@ public class MemberCont {
         int cnt = this.memberProc.member_update(memberVO);
         
         mav.addObject("cnt", cnt);
-
-        mav.setViewName("/member/update_success"); // /webapp/WEB-INF/views/member/list.jsp
+        mav.addObject("msg","회원 정보 수정 성공");
+        mav.setViewName("/member/msg"); // /webapp/WEB-INF/views/member/list.jsp
         System.out.println("성공!");
         System.out.println("cnt : "+ cnt);
       return mav;

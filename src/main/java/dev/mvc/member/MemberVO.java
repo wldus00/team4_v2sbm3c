@@ -13,6 +13,7 @@ public class MemberVO {
     private String birth;
     private String tel;
     private String signdate;
+    private String grade;
     
     public MemberVO() {
     }
@@ -50,6 +51,9 @@ public class MemberVO {
     public String getSigndate() {
         return signdate;
     }
+    public String getGrade() {
+        return grade;
+    }
     public void setMemberno(String memberno) {
         this.memberno = memberno;
     }
@@ -83,6 +87,13 @@ public class MemberVO {
     public void setSigndate(String signdate) {
         this.signdate = signdate;
     }
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+    
+    
+    
+    
     
     
     
