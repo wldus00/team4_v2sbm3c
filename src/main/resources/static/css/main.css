@@ -9,6 +9,11 @@
     color: black;
 }
 
+html, body {
+    height: 100%;
+}
+
+
 body {
     font-family: "Nunito Sans", sans-serif;
     color: #333;
@@ -182,14 +187,15 @@ img {
     position: relative;
     margin: 0 auto;
     width: 70%;
-    height: 50%;
     text-align: center;
+    min-height: 50%;
+    padding-bottom: 60px;
 }
-
+/*
 #main img {
-    width: 600px;
-    height: 600px;
-}
+    width: 50%;
+    height: 50%;
+}*/
 
 .title_line {
     text-align: left;
@@ -213,10 +219,11 @@ img {
 
 #footer {
     width: 100%;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     background-color: #877e9e;
+    transform: translatY(-100%);
 }
 
 .foot_cont {
@@ -279,7 +286,33 @@ img {
     right:0px;
     top:-1px;
     z-index:1;
-    width: 50px;
-    height: 48px;
+    width: 20px;
+    height: 20px;
 }
 
+
+/* order_pay 부분 */
+
+.aside_left {
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* notice 부분 */
+.notice_title_img {
+    width: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+.notice_title_img img {
+    width: 100%;
+}
+.notice_title {
+    width: 47%;
+    height: 260px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}

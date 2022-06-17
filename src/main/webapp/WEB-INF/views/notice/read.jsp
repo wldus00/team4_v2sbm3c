@@ -50,7 +50,7 @@
         <A href="./update_file.do?noticeno=${noticeno}">파일 수정</A>  
     <span class='menu_divide' >│</span>
     <A href="./delete.do?noticeno=${noticeno}">삭제</A>
-  </ASIDE> 
+  </ASIDE><br>
   
   
   <DIV class='menu_line'></DIV>
@@ -58,21 +58,19 @@
   <fieldset class="fieldset_basic">
     <ul>
       <li class="li_none">
-        <DIV style="width: 50%; float: left; margin-right: 10px;">
+        <div class="notice_title_img">
             <c:choose>
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}">
                 <%-- /static/contents/storage/ --%>
-                <IMG src="/contents/storage/${file1saved }" style="width: 100%;"> 
+                <img src="/contents/storage/${file1saved }"> 
               </c:when>
               <c:otherwise> <!-- 기본 이미지 출력 -->
-                <IMG src="/contents/images/none1.png" style="width: 100%;"> 
+                <img src="/contents/images/none1.png"> 
               </c:otherwise>
             </c:choose>
-        </DIV>
-        <DIV style="width: 47%; height: 260px; float: left; margin-right: 10px; margin-bottom: 30px;">
+        </div>
+        <div class="notice_title">
           <span style="font-size: 1.5em; font-weight: bold;">${title }</span><br>
-
-
         </DIV> 
 
         <DIV>${content }</DIV>

@@ -52,13 +52,18 @@ public class NoticeProc implements NoticeProcInter {
         for (NoticeVO noticeVO : list) {
             String content = noticeVO.getContent();
 
-            if (content.length() > 150) { // 160 초과이면 160자만 선택
-                content = content.substring(0, 150) + "...";
+            if (content.length() > 100) { // 160 초과이면 160자만 선택
+                content = content.substring(0, 100) + "...";
                 noticeVO.setContent(content);
             }
 
             String title = noticeVO.getTitle();
-
+            
+            if (title.length() > 25) { // 160 초과이면 160자만 선택
+                title = title.substring(0, 25) + "...";
+                noticeVO.setContent(title);
+            }
+            
             title = Tool.convertChar(title); // 특수 문자 처리
             content = Tool.convertChar(content);
 

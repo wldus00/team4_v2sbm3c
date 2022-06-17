@@ -11,9 +11,10 @@
  
 <link href="/css/main.css" rel="Stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 <script type="text/javascript">
   function delete_func(cartno) {  // GET -> POST 전송, 상품 삭제
@@ -50,6 +51,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" />
+<div id="main"><br>
 <%-- GET -> POST: 상품 삭제, 수량 변경용 폼 --%>
 <form name='frm_post' id='frm_post' action='' method='post'>
   <input type='hidden' name='cartno' id='cartno'>
@@ -179,7 +181,7 @@
     </tbody>
   </table>   
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
 </body>

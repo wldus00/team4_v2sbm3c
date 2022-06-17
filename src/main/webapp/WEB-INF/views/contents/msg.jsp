@@ -20,7 +20,7 @@
 </head> 
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-
+<div id="main"><br>
 <DIV class='title_line'>알림</DIV>
 
 <DIV class='message'>
@@ -107,7 +107,7 @@
   </fieldset>
 
 </DIV>
-
+</div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 

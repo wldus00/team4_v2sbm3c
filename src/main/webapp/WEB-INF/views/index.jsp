@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 </head>
 <body>
@@ -26,7 +26,7 @@
     <img src='./css/images/images.png'>
   </div>
 
-  테스트 1
+
   
 
     <jsp:include page="./menu/bottom.jsp" flush='false' />
