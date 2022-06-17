@@ -8,5 +8,5 @@ public class Member {
     public static int PAGE_PER_BLOCK = 10;
 
     /** 목록 파일명 */
-    public static String LIST_FILE = "list.do"; 
+    public static String LIST_FILE = "member_list_search_paging.do"; 
 }

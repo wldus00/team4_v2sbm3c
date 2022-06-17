@@ -28,7 +28,9 @@ public interface MemberDAOInter {
     
     public int passwd_check(HashMap<Object, Object> map);
     
-    public List<MemberVO> member_list_paging(HashMap<String, Object> map);
+    public List<MemberVO> member_list_paging(HashMap<String, Object> Map);
+    
+    public List<MemberVO> member_list_search_paging(HashMap<String, Object> Map);  
     
     public int search_count(HashMap<String, Object> hashMap);
 }

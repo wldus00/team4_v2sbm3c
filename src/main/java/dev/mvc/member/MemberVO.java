@@ -14,6 +14,9 @@ public class MemberVO {
     private String tel;
     private String signdate;
     
+    public MemberVO() {
+    }
+    
     public String getMemberno() {
         return memberno;
     }

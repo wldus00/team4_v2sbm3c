@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -69,20 +68,6 @@ public class MemberCont {
       
       return mav;
     }
-    
-//    @RequestMapping(value="/member/list.do", method=RequestMethod.GET)
-//    public ModelAndView list() {
-//      ModelAndView mav = new ModelAndView();
-//      
-//      //if (this.memberProc.isAdmin(session)) {
-//        List<MemberVO> list = memberProc.member_list();
-//        
-//        mav.addObject("list", list);
-//
-//        mav.setViewName("/member/list"); // /webapp/WEB-INF/views/member/list.jsp
-//       
-//      return mav;
-//    }  
     
     /**
      * 로그인 폼
@@ -281,7 +266,11 @@ public class MemberCont {
      * @return
      */
     @RequestMapping(value = "/member/list.do", method = RequestMethod.GET)
-    public ModelAndView member_list_paging(@RequestParam(value = "now_page", defaultValue = "1") int now_page) {
+    public ModelAndView member_list_paging(
+            @RequestParam(value = "now_page", defaultValue = "1") int now_page,
+            @RequestParam(value = "cate", defaultValue = "") String cate,
+            @RequestParam(value = "search", defaultValue = "") String search
+            ) {
       System.out.println("--> now_page: " + now_page);
 
       ModelAndView mav = new ModelAndView();
@@ -298,7 +287,7 @@ public class MemberCont {
       int search_count = memberProc.search_count(map);
       mav.addObject("search_count", search_count);
 
-      String paging = memberProc.pagingBox(search_count, now_page);
+      String paging = memberProc.pagingBox(cate, search_count, now_page, search);
       mav.addObject("paging", paging);
 
       // mav.addObject("now_page", now_page);
@@ -306,6 +295,36 @@ public class MemberCont {
       // /contents/list_by_cateno_table_img1_search_paging.jsp
       mav.setViewName("/member/member_list_paging");
       
+      return mav;
+    }
+    
+    @RequestMapping(value = "/member/member_list_search_paging.do", method = RequestMethod.GET)
+    public ModelAndView member_list_search_paging(
+            @RequestParam(value = "cate", defaultValue = "") String cate,
+            @RequestParam(value = "now_page", defaultValue = "1") int now_page,
+            @RequestParam(value = "word", defaultValue = "") String word) {
+      ModelAndView mav = new ModelAndView();
+      
+      // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      map.put("cate", cate);
+      map.put("word", word);
+      map.put("now_page", now_page); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
+
+      // 검색 목록
+      List<MemberVO> list = memberProc.member_list_search_paging(map);
+      mav.addObject("list", list);
+      
+      // 검색된 레코드 갯수
+      int search_count = memberProc.search_count(map);
+      mav.addObject("search_count", search_count);
+      System.out.println("검색 갯수 : " + search_count);
+      String paging = memberProc.pagingBox(cate, search_count, now_page, word);
+      mav.addObject("paging", paging);
+      mav.addObject("now_page", now_page);
+
+      System.out.println("member_list_search_paging 기능 발동");
+      mav.setViewName("/member/member_list_paging");
       return mav;
     }
     

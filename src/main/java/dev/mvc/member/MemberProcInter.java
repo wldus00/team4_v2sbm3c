@@ -30,14 +30,18 @@ public interface MemberProcInter {
     
     public List<MemberVO> member_list_paging(HashMap<String, Object> map);
     
-    /**
-     * 페이지 목록 문자열 생성, Box 형태
-     * @param search_count 검색 갯수
-     * @param now_page 현재 페이지, now_page는 1부터 시작
-     * @return
-     */
-    public String pagingBox(int search_count, int now_page);
+    public List<MemberVO> member_list_search_paging(HashMap<String, Object> Map);
     
     public int search_count(HashMap<String, Object> hashMap);
+    /**
+     * 
+     * @param cate 
+     * @param search_count
+     * @param now_page
+     * @param search
+     * @return
+     */
+    public String pagingBox(String cate, int search_count, int now_page, String word);
+    
     
 }
