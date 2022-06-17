@@ -40,7 +40,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
-<div id="main"><br>
+<div id="main"><br> 
 <DIV class='title_line'>로그인</DIV>
 
 <DIV class='content_body'>

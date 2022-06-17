@@ -28,8 +28,17 @@
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
 <div id="main">
-  <DIV class='title_line'>
-    회원(관리자 전용)
+  <DIV class='title_line' align="center">
+  <form action="./search.do" method="get">
+    <select>
+        <option value="id">ID</option>
+        <option value="username">성명</option>
+        <option value="tel">전화번호</option>
+        <option value="address1">주소</option>
+    </select>
+    <input type="text" id="search" name="search">
+    <button type="button">검색</button>
+  </form>
   </DIV>
 
   <DIV class='content_body'>
@@ -44,7 +53,7 @@
    
     <!-- <div class='menu_line'></div> -->
     
-   
+    
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style='width: 10%;'/>

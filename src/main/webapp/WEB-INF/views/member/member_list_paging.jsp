@@ -18,33 +18,15 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"></head>
  
  
-<script type="text/javascript">
-  $(function(){
- 
-  });
-</script>
 </head> 
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
 <div id="main">
-  <DIV class='title_line'>
-    회원(관리자 전용)
-  </DIV>
-
+  
+  <div class="title_line"></div>
   <DIV class='content_body'>
-
-   <!--  <ASIDE class="aside_right">
-      <A href="javascript:location.reload();">새로고침</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./create.do'>회원 가입</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./list.do'>목록</A>
-    </ASIDE>  -->
-   
-    <!-- <div class='menu_line'></div> -->
-    
-   
+  
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style='width: 10%;'/>
@@ -53,7 +35,6 @@
       <col style='width: 30%;'/>
       <col style='width: 20%;'/>
       <col style='width: 15%;'/>
-      <%-- <col style='width: 10%;'/> --%>
     </colgroup>
     <TR>
       <TH class='th_bs'>ID</TH>
@@ -89,11 +70,6 @@
       </TD>
       <TD class='td_left'>${address2} </TD>
       <TD class='td_basic'>${signdate.substring(0, 10)}</TD> <!-- 년월일 -->
-      <%-- <TD class='td_basic'>
-        <A href="./passwd_update.do?memberno=${memberno}"><i class="fa-solid fa-key"></i></A>
-        <A href="./read.do?memberno=${memberno}"><i class="fa-solid fa-file-pen"></i></A>
-        <A href="./delete.do?memberno=${memberno}"><i class="fa-solid fa-trash-can"></i></A>
-      </TD> --%>
       
     </TR>
     </c:forEach>
@@ -103,6 +79,19 @@
   <DIV class='bottom_menu'>
     ${paging }
     <!-- <button type='button' onclick="location.reload();" class="btn btn-info">새로 고침</button> -->
+  </DIV>
+  <br>
+  <DIV class=title_line2>
+  <form action="./member_list_search_paging.do" method="GET" name='frm' id='frm'>
+    <select style="height: 30px;" name="cate" id="cate">
+        <option value="id">ID</option>
+        <option value="username">성명</option>
+        <option value="tel">전화번호</option>
+        <option value="address1">주소</option>
+    </select>
+    <input type="text" id="word" name="word" style="width: 200px; height: 30px;">
+    <button type="submit">검색</button>
+  </form>
   </DIV>
 </DIV>
  </div>
