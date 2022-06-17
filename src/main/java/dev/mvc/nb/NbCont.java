@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.contents.ContentsProcInter;
 import dev.mvc.nb.Nbgrp_NbVO;
 import dev.mvc.nbgrp.NbgrpProcInter;
 import dev.mvc.nbgrp.NbgrpVO;
@@ -27,6 +28,10 @@ public class NbCont {
     @Autowired
     @Qualifier("dev.mvc.nb.NbProc")
     private NbProcInter nbProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.contents.ContentsProc")
+    private ContentsProcInter contentsProc;
     
     /*
      * @Autowired
@@ -196,10 +201,10 @@ public class NbCont {
         json.put("name", nbVO.getName());
         json.put("rdate", nbVO.getRdate());
         
-        /*
-         * int count_by_nbno = this.contentsProc.count_by_nbno(nbno);
-         * json.put("count_by_nbno", count_by_nbno);
-         */
+     
+        int count_by_nbno = this.contentsProc.count_by_nbno(nbno);
+        json.put("count_by_nbno", count_by_nbno);
+      
 
         return json.toString();
 

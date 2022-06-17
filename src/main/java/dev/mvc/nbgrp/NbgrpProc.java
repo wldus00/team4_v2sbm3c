@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class NbgrpProc implements NbgrpProcInter {
     /*
      * DI: 객체가 필요한 곳에 객체를 자동으로 생성하여 할당 Autowired: DI 사용 선언 ① Spring이 자동으로
-     * CategrpDAOInter를 구현(DAO class 생성) ② 객체 생성: private CategrpDAOInter categrpDAO
-     * = new CategrpDAO(); ③ categrpDAO에 생성된 객체를 할당
+     * nbgrpDAOInter를 구현(DAO class 생성) ② 객체 생성: private nbgrpDAOInter nbgrpDAO
+     * = new nbgrpDAO(); ③ nbgrpDAO에 생성된 객체를 할당
      */
     @Autowired
     private NbgrpDAOInter nbgrpDAO;

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import dev.mvc.nb.NbProcInter;
 import dev.mvc.nbgrp.NbgrpVO;
 
 @Controller
@@ -17,6 +19,10 @@ public class NbgrpCont {
     @Autowired
     @Qualifier("dev.mvc.nbgrp.NbgrpProc") // @Component("dev.mvc.nbgrp.NbgrpProc")
     private NbgrpProcInter nbgrpProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.nb.NbProc") 
+    private NbProcInter nbProc;
     
     /**
      * 새로고침 방지
@@ -49,14 +55,14 @@ public class NbgrpCont {
     // http://localhost:9091/nbgrp/create.do
     /**
      * 등록 처리
-     * CategrpVO categrpVO 객체안의 필드들이 <form> 태그에 존재하면 자동으로 setter 호출됨. 
-     * <form> 태그에 존재하는 값들은 CategrpVO categrpVO 객체안의 필드에 setter를 이용하여 자동 할당됨.  
-     * @param categrpVO
+     * NbgrpVO nbgrpVO 객체안의 필드들이 <form> 태그에 존재하면 자동으로 setter 호출됨. 
+     * <form> 태그에 존재하는 값들은 nbgrpVO nbgrpVO 객체안의 필드에 setter를 이용하여 자동 할당됨.  
+     * @param nbgrpVO
      * @return
      */
     @RequestMapping(value = "/nbgrp/create.do", method = RequestMethod.POST)
     public ModelAndView create(NbgrpVO nbgrpVO) { // nbgrpVO 자동 생성, Form -> VO
-        // CategrpVO categrpVO <FORM> 태그의 값으로 자동 생성됨.
+        // nbgrpVO nbgrpVO <FORM> 태그의 값으로 자동 생성됨.
         // request.setAttribute("nbgrpVO", nbgrpVO); 자동 실행
 
         ModelAndView mav = new ModelAndView();
@@ -107,7 +113,7 @@ public class NbgrpCont {
      * 조회 + 삭제폼 + 카테고리 그룹에 속한 카테고리 레코드 갯수 
      * http://localhost:9091/nbgrp/read_ajax2.do?nbgrpno=1
      * {"nbgrpno":1,rdate":"2022-04-28 15:19:39","name":"푸드 코트","count_by_nbgrpno":3}
-     * @param categrpno 조회할 카테고리 번호
+     * @param nbgrpno 조회할 카테고리 번호
      * @return
      */
     @RequestMapping(value="/nbgrp/read_ajax2.do", method=RequestMethod.GET )
@@ -127,13 +133,13 @@ public class NbgrpCont {
         json.put("rdate", nbgrpVO.getRdate());
         
         // 카테고리 그룹에 속한 카테고리수 파악 nb 개발후
-      //  int count_by_nbgrpno =  this.nbgrProc.count_by_categrpno(categrpno);
-      //  json.put("count_by_categrpno", count_by_categrpno);
+      int count_by_nbgrpno =  this.nbProc.count_by_nbgrpno(nbgrpno);
+      json.put("count_by_nbgrpno", count_by_nbgrpno);
         
         return json.toString();
     }
     
-    // http://localhost:9091/categrp/update.do
+    // http://localhost:9091/nbgrp/update.do
     /**
      * 수정 처리
      * 
@@ -142,7 +148,7 @@ public class NbgrpCont {
      */
     @RequestMapping(value = "/nbgrp/update.do", method = RequestMethod.POST)
     public ModelAndView update(NbgrpVO nbgrpVO) {
-        // CategrpVO categrpVO <FORM> 태그의 값으로 자동 생성됨.
+        // nbgrpVO nbgrpVO <FORM> 태그의 값으로 자동 생성됨.
         // request.setAttribute("nbgrpVO", nbgrpVO); 자동 실행
 
         ModelAndView mav = new ModelAndView();
@@ -166,7 +172,7 @@ public class NbgrpCont {
     // http://localhost:9091/nbgrp/read_delete.do
     /**
      * 조회 + 삭제폼
-     * @param categrpno 조회할 카테고리 번호
+     * @param nbgrpno 조회할 카테고리 번호
      * @return
      */
     @RequestMapping(value="/nbgrp/read_delete.do", method=RequestMethod.GET )
@@ -186,7 +192,7 @@ public class NbgrpCont {
     // http://localhost:9091/nbgrp/delete.do
     /**
      * 삭제
-     * @param categrpno 조회할 카테고리 번호
+     * @param nbgrpno 조회할 카테고리 번호
      * @return
      */
     @RequestMapping(value="/nbgrp/delete.do", method=RequestMethod.POST )
@@ -199,7 +205,7 @@ public class NbgrpCont {
       int cnt = this.nbgrpProc.delete(nbgrpno); // 삭제 처리
       mav.addObject("cnt", cnt);  // request 객체에 저장
       
-      // mav.setViewName("/categrp/delete_msg"); // delete_msg.jsp
+      // mav.setViewName("/nbgrp/delete_msg"); // delete_msg.jsp
       mav.setViewName("redirect:/nbgrp/list.do");
 
       return mav;
@@ -218,7 +224,7 @@ public class NbgrpCont {
       
       mav.addObject("list", list); // request.setAttribute("list", list);
 
-//    mav.setViewName("/categrp/list"); // /webapp/WEB-INF/views/nbgrp/list.jsp
+//    mav.setViewName("/nbgrp/list"); // /webapp/WEB-INF/views/nbgrp/list.jsp
       mav.setViewName("/nbgrp/list_ajax"); // /webapp/WEB-INF/views/nbgrp/list_ajax.jsp
       return mav;
     }
