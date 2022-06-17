@@ -17,6 +17,10 @@ CREATE TABLE Member(
 		Tel                           		VARCHAR(20)		 NULL ,
 		SignDate                      		DATE		 NOT NULL
 );
+-- 등급 컬럼 추가하기
+alter table member add grade number(10) Default 20 not null;
+
+commit;
 
 COMMENT ON TABLE Member is '회원';
 COMMENT ON COLUMN Member.MEMBERNO is '회원번호';
