@@ -83,8 +83,8 @@
                     장바구니
                 </button>
                    <div class="dropdown-content">
-                        <a href="/cart/list_by_memberno.do">주문 목록</a>
-                        <a href="/order_pay/create.do">주문 결제</a>
+                        <a href="/cart/list_by_memberno.do">쇼핑 주문 목록</a>
+                        <a href="/order_pay/create.do">쇼핑 주문 결제</a>
                         <a href="/order_pay/list_by_memberno.do">주문 결제 목록</a>
                     </div>
             </div>

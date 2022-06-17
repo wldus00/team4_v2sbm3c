@@ -175,7 +175,7 @@
   
 <body>
 <jsp:include page="../menu/top.jsp" />
- 
+<div id="main"><br>
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
@@ -321,7 +321,7 @@
   <!-- 페이지 목록 출력 부분 종료 -->
   
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
 </body>

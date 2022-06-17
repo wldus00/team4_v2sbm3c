@@ -84,8 +84,10 @@ public class Order_payCont {
             
           }
           
-          if (tot_sum < 30000) { // 상품 주문 금액이 30,000 원 이하이면 배송비 3,000 원 부여
-            baesong_tot = 3000;
+        if (tot_sum < 30000) { // 상품 주문 금액이 30,000 원 이하이면 배송비 3,000 원 부여
+            if (list.size() > 0) {  // 총 주문 금액이 30,000 이하이면서 상품이 존재한다면 3,000 할당
+              baesong_tot = 3000;
+            }
           }
           
           total_order = tot_sum + baesong_tot; // 전체 주문 금액

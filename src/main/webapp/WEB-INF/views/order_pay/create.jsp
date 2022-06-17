@@ -48,6 +48,8 @@
    
     <%-- table 내용 --%>
     <tbody>
+    <c:choose>
+    <c:when test="${list.size() > 0 }">
       <c:forEach var="cartVO" items="${list }">
         <c:set var="cartno" value="${cartVO.cartno }" />
         <c:set var="contentsno" value="${cartVO.contentsno }" />
@@ -94,7 +96,13 @@
           </td>
         </tr>
       </c:forEach>
-      
+              </c:when>
+        <c:otherwise>
+          <tr>
+            <td colspan="6" style="text-align: center; font-size: 1.3em;">쇼핑 카트에 상품이 없습니다.</td>
+          </tr>
+        </c:otherwise>
+      </c:choose>
     </tbody>
   </table>
   
@@ -251,13 +259,19 @@
           <div class='cart_price'><fmt:formatNumber value="${point_tot }" pattern="#,###" /> 원 </div>
           
           <div class='cart_label'>배송비</div>
-          <div class='cart_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
+              <div class='cart_price'><fmt:formatNumber value="${baesong_tot }" pattern="#,###" /> 원</div>
         </td>
         <td style='width: 50%;'>
           <div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_order }" pattern="#,###" /> 원</div>
-          
-            <button type='button' id='btn_order_pay' class='btn btn-info' style='font-size: 1.5em;'>결재하기</button>
+            <c:choose>
+              <c:when test="${list.size() > 0 }"> <%-- 상품이 있으면 버튼 표시 --%>
+                <button type='button' id='btn_order_pay' class='btn btn-info' style='font-size: 1.5em;'>결재하기</button>
+              </c:when>
+              <c:when test="${list.size() < 0 }"> <%-- 상품이 없으면 버튼 미표시 --%>
+                <button type='button' id='btn_order_pay' class='btn btn-info' style='font-size: 1.5em;'>결재하기</button>
+              </c:when>
+            </c:choose>
         <td>
       </tr>
     </tbody>
@@ -318,6 +332,7 @@
   }
   
   function send() {
+      
     if (check_null($('#rname').val()))  {
       alert('수취인 성명을 입력해주세요.');
       $('#rname').focus();
@@ -346,7 +361,8 @@
       alert('상세 주소를 입력해주세요. 내용이 없으면 수취인 성명을 입력주세요.');
       $('#raddress2').focus();
       return;
-    }     
+    }  
+   
 
     frm.submit();
   }

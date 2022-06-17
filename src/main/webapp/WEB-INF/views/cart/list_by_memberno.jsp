@@ -174,7 +174,14 @@
           <div class='cart_price'  style='font-size: 2.0em; color: #FF0000;'><fmt:formatNumber value="${total_ordering }" pattern="#,###" /> 원</div>
           
           <form name='frm' id='frm' style='margin-top: 50px;' action="/order_pay/create.do" method='get'>
-            <button type='submit' id='btn_order' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
+            <c:choose>
+              <c:when test="${list.size() > 0 }"> <%-- 상품이 있으면 버튼 표시 --%>
+                <button type='submit' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
+              </c:when>
+              <c:when test="${list.size() < 0 }"> <%-- 상품이 없으면 버튼 미표시 --%>
+                <button type='submit' class='btn btn-info' style='font-size: 1.5em;'>주문하기</button>
+              </c:when>
+            </c:choose>
           </form>
         <td>
       </tr>
@@ -184,6 +191,8 @@
 </div>
  
 <jsp:include page="../menu/bottom.jsp" />
+
+
 </body>
  
 </html>
