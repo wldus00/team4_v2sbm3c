@@ -46,7 +46,7 @@ function send() { // 회원 가입 처리
             <col style='width: 80%;'/>
             <tr valign="middle" height="49px">
                 <td><a href="./member_update.do?memberno=${memberno }">정보 수정</a></td>
-                <td rowspan="5" align="center">
+                <td rowspan="5">
     <DIV style='width: 100%; margin: 10px auto; text-align: center;'>
     </DIV>
     <FORM name='frm' id='frm' method='POST' action='./update.do' class="form-horizontal">
@@ -74,7 +74,7 @@ function send() { // 회원 가입 처리
     </div>  
 <DIV>
                                             <!-- 우편번호 API 시작 -->
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
+<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 15px; position:relative">
   <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1; width: 20px; height: 20px;" onclick="foldDaumPostcode()" alt="접기 버튼">
 </div>
 
