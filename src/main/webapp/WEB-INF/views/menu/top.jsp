@@ -10,16 +10,16 @@
                     <c:choose>
                         <c:when test="${sessionScope.id == null}">
                             <a href="/member/login.do">로그인</a>
+                            <a href="/member/create.do">회원가입</a>
                         </c:when>
-                     <c:otherwise>
+                        <c:otherwise>
                             <a href='/member/logout.do'>${sessionScope.id } 로그아웃</a>
+                            <a href="/member/member_update.do?memberno=${memberno }">마이페이지</a>
+                            <a href="/cart/list_by_memberno.do">장바구니</a>
+                            <a href="/order_pay/create.do">주문 결제</a>
                         </c:otherwise>
                     </c:choose>
                 </li>
-                <li><a href="/member/create.do">회원가입</a></li>
-                <li><a href="#">마이페이지</a></li>
-                <li><a href="/cart/list_by_memberno.do">장바구니</a></li>
-                <li><a href="/order_pay/create.do">주문 결제</a></li>
                 <c:choose>
                   <c:when test="${sessionScope.grade < 10}">
                     <li class="nav-item dropdown">
@@ -83,8 +83,8 @@
                     장바구니
                 </button>
                    <div class="dropdown-content">
-                        <a href="/cart/list_by_memberno.do">쇼핑 주문 목록</a>
-                        <a href="/order_pay/create.do">쇼핑 주문 결제</a>
+                        <a href="/cart/list_by_memberno.do">주문 목록</a>
+                        <a href="/order_pay/create.do">주문 결제</a>
                         <a href="/order_pay/list_by_memberno.do">주문 결제 목록</a>
                     </div>
             </div>
