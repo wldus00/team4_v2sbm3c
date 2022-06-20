@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 회원 가입 -->
   <insert id="member_create"
     parameterType="dev.mvc.member.MemberVO">
-    insert into member values(member_seq.nextval, #{id},
-    #{pw}, #{username}, #{zipcode}, #{address1}, #{address2}, #{gender},
+    insert into member(memberno, id, pw, username, zipcode, address1, address2, gender, birth, tel, signdate)
+    values(member_seq.nextval, #{id}, #{pw}, #{username}, #{zipcode}, #{address1}, #{address2}, #{gender},
     #{birth}, #{tel}, sysdate)
   </insert>
 
