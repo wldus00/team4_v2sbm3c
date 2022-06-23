@@ -20,7 +20,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @PropertySource("classpath:/application.properties")  // 설정 파일 위치
 @MapperScan(basePackages= {"dev.mvc.team4_v2sbm3c", "dev.mvc.nbgrp", "dev.mvc.nb",
                             "dev.mvc.contents","dev.mvc.member","dev.mvc.cart", "dev.mvc.review", "dev.mvc.notice",
-                            "dev.mvc.order_pay", "dev.mvc.order_item"})
+                            "dev.mvc.order_pay", "dev.mvc.order_item","dev.mvc.ytgrp","dev.mvc.you","dev.mvc.chatbot"})
 
 public class DatabaseConfiguration {
     

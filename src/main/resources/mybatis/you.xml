@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.nft.nftDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.you.YouDAOInter">
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체의 타입
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{name}: VO class의 public String getName() 자동 호출
+  #{nftgrpno}: VO class의 public int getnftgrpno() 자동 호출\
+     youno                                NUMBER(10)         NOT NULL         PRIMARY KEY,
+         title                                VARCHAR2(50)         NOT NULL,
+        url                                  VARCHAR2(2000)         NOT NULL,
+        rdate                                 DATE         NOT NULL,
+        ytgrpno                             NUMBER(7)         NOT NULL       ,
+   --> 
+    <insert id="create" parameterType="dev.mvc.you.YouVO">
+    INSERT INTO you(youno, title, url, rdate, ytgrpno)
+    VALUES(you_seq.nextval, #{title}, #{url}, sysdate, #{ytgrpno})
+  </insert> 
+  <!-- 
+  전체 목록
+  레코드 갯수 만큼 CateVO 객체를 만들어 ArrayList에 저장하여 리턴,
+  List<CateVO> list = new ArrayList<CateVO>(); 
+  -->
+  <select id="list_all" resultType="dev.mvc.you.YouVO">
+    SELECT youno, title, url, rdate, ytgrpno
+    FROM you
+    ORDER BY youno ASC
+  </select>
+    <select id="list_by_ytgrpno" resultType="dev.mvc.you.YouVO" parameterType="int">
+    SELECT youno, title, url, rdate, ytgrpno
+    FROM you
+    WHERE ytgrpno = #{ytgrpno}
+    ORDER BY youno ASC
+  </select>
+ <select id="read" resultType="dev.mvc.you.YouVO" parameterType="int">
+    SELECT  youno, title, url, rdate, ytgrpno
+    FROM you
+    WHERE youno=#{youno}
+  </select>  
+  
+  <update id="update" parameterType="dev.mvc.you.YouVO">
+    UPDATE you
+    SET ytgrpno=#{ytgrpno}, title=#{title}, url=#{url}
+    WHERE youno = #{youno}
+  </update>
+    <!-- 삭제, return: int -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM you
+    WHERE youno = #{youno}
+  </delete>   
+ 
+   </mapper>
