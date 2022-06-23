@@ -59,10 +59,10 @@
       <col style='width: 10%;'/>
       <col style='width: 10%;'/>
       <col style='width: 15%;'/>
-      <col style='width: 30%;'/>
-      <col style='width: 20%;'/>
+      <col style='width: 25%;'/>
       <col style='width: 15%;'/>
-      <%-- <col style='width: 10%;'/> --%>
+      <col style='width: 15%;'/>
+      <col style='width: 10%;'/>
     </colgroup>
     <TR>
       <TH class='th_bs'>ID</TH>
@@ -71,7 +71,7 @@
       <TH class='th_bs'>주소1</TH>
       <TH class='th_bs'>주소2</TH>
       <TH class='th_bs'>등록일</TH>
-      <!-- <TH class='th_bs'>기타</TH> -->
+      <TH class='th_bs'>관리자 권한</TH>
     </TR>
    
     <c:forEach var="memberVO" items="${list }">
@@ -98,11 +98,11 @@
       </TD>
       <TD class='td_left'>${address2} </TD>
       <TD class='td_basic'>${signdate.substring(0, 10)}</TD> <!-- 년월일 -->
-      <%-- <TD class='td_basic'>
+      <TD class='td_basic'>
         <A href="./passwd_update.do?memberno=${memberno}"><i class="fa-solid fa-key"></i></A>
         <A href="./read.do?memberno=${memberno}"><i class="fa-solid fa-file-pen"></i></A>
         <A href="./delete.do?memberno=${memberno}"><i class="fa-solid fa-trash-can"></i></A>
-      </TD> --%>
+      </TD>
       
     </TR>
     </c:forEach>

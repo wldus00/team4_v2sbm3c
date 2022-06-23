@@ -24,7 +24,25 @@ $(function(){
     $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
     $('#btn_checkID').on('click', checkID); // 체크
     $('#btn_send').on('click', send); // 가입 버튼
+    $('#pw2').on('focusout',pwcheck); 
 });
+
+function pwcheck(){
+    let frm = $('#frm');
+    let pw1 = $("#pw", frm).val();
+    let pw2 = $("#pw2", frm).val();
+    if(pw1 != "" || pw2 != ""){
+        if(pw1 == pw2){
+            $("#modal_pwcheck").html("일치");
+            $("#modal_pwcheck").attr('color','alert alert-success');
+            } else {
+                $("#modal_pwcheck").html('불일치');
+                $("#modal_pwcheck").attr('color', 'red');
+                $('#pw').val("");
+                $('#pw2').val("");
+            }
+        }
+}
 
 // jQuery ajax 요청
 function checkID() {
@@ -145,8 +163,18 @@ function send() { // 회원 가입 처리
     <div class="form-group">
       <label for="pw" class="col-md-2 control-label" style='font-size: 0.9em;'>PW</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='pw' id='pw' 
-                   value='' style='width: 30%;' placeholder="비밀번호">
+        <input type="password" class="form-control" name='pw' id='pw' 
+                   value='' style='width: 30%;' placeholder="비밀번호" class='pwtest'>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pw" class="col-md-2 control-label" style='font-size: 0.9em;'>PW 재확인</label>    
+      <div class="col-md-10">
+        <input type="password" class="form-control" name='pw2' id='pw2' 
+                   value='' style='width: 30%;' placeholder="비밀번호 재입력" class='pwtest'>
+        <div>
+          <p id='modal_pwcheck'></p>  <%-- 결과 --%>
+        </div>
       </div>
     </div>
     <div class="form-group">

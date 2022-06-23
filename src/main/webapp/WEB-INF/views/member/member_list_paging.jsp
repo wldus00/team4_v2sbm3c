@@ -29,12 +29,17 @@
   
     <table class="table table-striped" style='width: 100%;'>
     <colgroup>
-      <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
-      <col style='width: 15%;'/>
-      <col style='width: 30%;'/>
-      <col style='width: 20%;'/>
-      <col style='width: 15%;'/>
+              <col style='width: 10%;'/>
+              <col style='width: 10%;'/>
+              <col style='width: 15%;'/>
+              <col style='width: 25%;'/>
+              <col style='width: 15%;'/>
+              <col style='width: 15%;'/>
+      <c:choose>
+        <c:when test="${sessionScope.grade < 5}">
+            <col style='width: 10%;'/>
+        </c:when>
+      </c:choose>
     </colgroup>
     <TR>
       <TH class='th_bs'>ID</TH>
@@ -43,7 +48,11 @@
       <TH class='th_bs'>주소</TH>
       <TH class='th_bs'>상세 주소</TH>
       <TH class='th_bs'>등록일</TH>
-      <!-- <TH class='th_bs'>기타</TH> -->
+      <c:choose>
+        <c:when test="${sessionScope.grade < 5}">
+            <TH class='th_bs'>관리자 권한</TH>
+        </c:when>
+      </c:choose>
     </TR>
    
     <c:forEach var="memberVO" items="${list }">
@@ -60,8 +69,8 @@
       <TD class='td_basic'>${tel}</TD>
       <TD class='td_left'>
         <c:choose>
-          <c:when test="${address1.length() > 25 }"> <!-- 긴 주소 처리 -->
-            ${address1.substring(0, 25) }...
+          <c:when test="${address1.length() > 35 }"> <!-- 긴 주소 처리 -->
+            ${address1.substring(0, 35) }...
           </c:when>
           <c:otherwise>
             ${address1}
@@ -70,7 +79,15 @@
       </TD>
       <TD class='td_left'>${address2} </TD>
       <TD class='td_basic'>${signdate.substring(0, 10)}</TD> <!-- 년월일 -->
-      
+      <c:choose>
+      <c:when test="${sessionScope.grade<5}">
+      <TD class='td_basic'>
+        <A href="./passwd_update.do?memberno=${memberno}"><i class="fa-solid fa-key"></i></A>
+        <A href="./read.do?memberno=${memberno}"><i class="fa-solid fa-file-pen"></i></A>
+        <A href="./delete.do?memberno=${memberno}"><i class="fa-solid fa-trash-can"></i></A>
+      </TD>
+      </c:when>
+      </c:choose>
     </TR>
     </c:forEach>
     

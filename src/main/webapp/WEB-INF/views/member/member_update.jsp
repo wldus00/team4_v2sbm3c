@@ -51,13 +51,6 @@ function send() { // 회원 가입 처리
     </DIV>
     <FORM name='frm' id='frm' method='POST' action='./update.do' class="form-horizontal">
     <div class="form-group">
-      <label for="pw" class="col-md-2 control-label" style='font-size: 0.9em;'>PW</label>    
-      <div class="col-md-10">
-        <input type='text' class="form-control" name='pw' id='pw' 
-                   value='' style='width: 30%;' placeholder="비밀번호">
-      </div>
-    </div>
-    <div class="form-group">
       <label for="username" class="col-md-2 control-label" style='font-size: 0.9em;'>성명</label>    
       <div class="col-md-10">
       <label for="username" class="col-md-2 control-label" style='font-size: 0.9em;'>${memberVO.username}</label>    
@@ -189,7 +182,7 @@ function DaumPostcode() {
 </td>
             </tr>
             <tr height="49px">
-                <td  style="vertical-align: middle;"><a href="#">게시글 관리</a></td>
+                <td  style="vertical-align: middle;"><a href="./member_pwupdate.do?memberno=${memberno }">비밀번호 변경</a></td>
             </tr>
             <tr height="49px"> 
                 <td  style="vertical-align: middle;"><a href="#">미정</a></td>
