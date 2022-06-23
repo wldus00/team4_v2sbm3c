@@ -44,8 +44,16 @@ div {
     font-size: 20px;
 }
 
+#header .header_top a:hover {
+        text-decoration: none;
+}
+
 #header .top_menu a {
     float: left;
+}
+
+#header .top_menu a:hover {
+        text-decoration: none;
 }
 
 #header .top_menu {
@@ -92,31 +100,54 @@ div {
     content: "";
 }
 
-.header_title_cont, .gnb, .foot_cont{
+.header_title_cont, .gnb {
     position: relative;
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 #header .title_logo {
     font-size: 14px;
     text-align: center;
-    padding: 30px 0 30px 0;
+    padding: 20px 0 20px 0;
 }
 
 .title_logo img {
     background-color: #f0ecec;
     border-radius: 50%;
+    vertical-align: middle;
+    width: 155px;
+    height: 155px;
 }
 
-
-.title_a{
-    position: absolute;
+.title_text a {
+    padding: 5px 10px;
     text-align: center;
-    left: 540px;
-    font-size: 14px;
     font-weight: bold;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.card {
+    height: 200px;
+}
+
+.card img {
+    
+    height: 200px;
+}
+
+.card-title {
+    color: white;
+}
+
+.card-text-1 a {
+    text-align: right;
+}
+
 
 img {
     border: 0 none;
@@ -131,9 +162,6 @@ img {
 
 /* 메뉴바 부분 */
 
-.gnb {
-    border-bottom: 1px solid #e2e2e2;
-}
 
 .dropdown{
     position : relative;
@@ -141,23 +169,20 @@ img {
 }
 
 .dropbtn{
-    border : 0px solid rgb(126, 126, 126);
+    border : 1px solid #f6f6f6;
     border-radius : 5px;
     background-color: #f5f5f5;
-    font-weight: 400;
     color : rgb(37, 37, 37);
     padding : 12px;
     width :196.2px;
     text-align: center;
     cursor : pointer;
-    font-size : 14px;
 }
 
 .dropdown-content{
     display : none;
     position : absolute;
     z-index : 1; /*다른 요소들보다 앞에 배치*/
-    font-weight: 400;
     background-color: #f9f9f9;
     min-width : 200px;
 }
@@ -168,12 +193,13 @@ img {
     display : block;
     text-decoration : none;
     color : rgb(37, 37, 37);
-    font-size: 14px;
     padding : 12px 20px;
 }
 
 .dropdown-content a:hover{
-    background-color : #ececec
+    text-decoration: none;
+    background-color : #ececec;
+    
 }
 
 .dropdown:hover .dropdown-content {
@@ -191,6 +217,11 @@ img {
     min-height: 50%;
     padding-bottom: 60px;
 }
+
+#main a:hover {
+    text-decoration: none;
+}
+
 /*
 #main img {
     width: 50%;
@@ -210,6 +241,25 @@ img {
     text-align: left;
 }
 
+.chatbot {
+    position: fixed;
+    z-index : 1;
+    bottom: 3%;
+    right: 3%;
+}
+
+.chatbot img {
+    width: 60px;
+    height: 60px;
+}
+
+.title_1 {
+    border-bottom: 1px solid #555555; 
+    text-align: left;
+    margin: 10px;
+}
+
+
 /* 마지막부분  */
 
 #footer_wrap {
@@ -227,17 +277,25 @@ img {
 }
 
 .foot_cont {
+    position: relative;
     overflow: hidden;
-    padding: 35px 0 35px 0;
+    padding: 20px 0 35px 0;
     color: #a9a9a9;
     font-size: 12px;
     line-height: 1.8;
+    text-align: left;
+    margin-left: 15%;
+    width: 50%;
 }
+
+    
+    
+
 
 .foot_cont .foot_logo {
     display: inline-block;
     /* float: left; */
-    width: 220px;
+    width: 20%;
     padding: 0px 40px 0px 40px;   
 }
 .foot_cont .foot_logo img {
@@ -255,18 +313,18 @@ img {
 }
 
 
-.foot_cont .foot_info_list dl {
-    float: left;
-}
 
 .foot_cont .foot_info_list dt {
     float: left;
+    color: #e2e2e2;
+    font-size: 20px;
 }
 
 .foot_cont .foot_info_list dd {
     float: left;
-    padding: 0 15px 0 3px;
+    padding: 0 15px 0 0px;
     color: #e2e2e2;
+    font-size: 20px;
 }
 
 /* 회원 가입 부분 - 우편 번호 버튼 클릭 시  */

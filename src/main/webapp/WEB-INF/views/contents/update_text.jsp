@@ -37,7 +37,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
- 
+<div id="main"><br>
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
@@ -151,7 +151,7 @@
   
   </FORM>
 </DIV>
- 
+</div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  

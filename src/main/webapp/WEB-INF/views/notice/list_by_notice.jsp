@@ -28,7 +28,14 @@
 
 <DIV class='content_body'>
   <ASIDE class="aside_right">
-    <A href="./create.do?noticeno=${noticeVO.noticeno }">등록</A>
+    <c:choose>
+      <c:when test="${sessionScope.grade < 10}">
+        <A href="./create.do?cateno=${cateVO.cateno }">등록</A>
+      </c:when>
+      <c:otherwise>
+        <A href="javascript:admin();">등록</A>   
+      </c:otherwise>
+    </c:choose>
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
   </ASIDE> 
@@ -94,6 +101,12 @@
 </div>
  
 <jsp:include page="../menu/bottom.jsp" />
+<script type="text/javascript">
+function admin() {
+    alert("관리자만 등록가능합니다.");
+}
+
+</script>
 </body>
  
 </html>

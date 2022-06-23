@@ -12,13 +12,14 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>Resort world</title>
  
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link href="/css/main.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
 <script type="text/javascript">
   $(function(){
@@ -30,7 +31,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
- 
+ <div id="main"><br>
 <DIV class='title_line'>
   <A href="../nbgrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../nb/list_by_nbgrpno.do?nbgrpno=${nbgrpVO.nbgrpno }" class='title_link'>${nbgrpVO.name }</A> >
@@ -111,7 +112,7 @@
   </fieldset>
 
 </DIV>
- 
+</div>
 <jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  

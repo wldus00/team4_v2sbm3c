@@ -32,9 +32,11 @@
         <div class="header_title">
             <div class="header_title_cont">
                 <div class="title_logo">
-                    <img src="/css/images/images.png" alt="노트북 사진" />
-                    <a class="title_a">노트북 추천 쇼핑몰</a>
+                    <img src="/css/images/logo2.jpg" alt="노트북 사진" />
                 </div>
+                <div class="title_text">
+                    <a>노트북 추천 쇼핑몰</a>
+                </div>    
             </div>
         </div>
         <div class="gnb">
@@ -47,20 +49,14 @@
                     <a href="/nb/list_all.do">카테고리 전체 목록</a>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn"> 
-                    즐겨찾기
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">즐겨찾기 그룹</a>
-                    <a href="#">즐겨찾기 전체</a>
-                    <a href="#">즐겨찾기 전체 Join</a>
-                </div>
-                </div>
+
             <div class="dropdown">
                 <button class="dropbtn">
-                    추천시스템
+                    관심 분야
                 </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="javascript:openPopup();">추천시스템</a>
+                </div>
                 </div>
                 <div class="dropdown">
                 <button class="dropbtn"> 
@@ -89,6 +85,18 @@
                     </div>
             </div>
         </div>
+      <script type="text/javascript">
+      function openPopup() {
+          let _width = '800';
+          let _height = '500';
 
+          var _left = Math.ceil(( window.screen.width - _width )/2);
+          var _top = Math.ceil(( window.screen.height - _height )/2); 
+          window.open('/recommend/recommend_nb/start.do', '_blank', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+          return false;
+        }
+      </script>
+
+    
     </header>
   

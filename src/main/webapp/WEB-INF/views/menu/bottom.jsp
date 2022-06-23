@@ -9,27 +9,16 @@
             <div class="foot_cont">
                 <div class="foot_logo">
                     <a href="#">
-                        <img src="/css/images/MacBook.png" alt="맥북사진" />
+                        <img src="/css/images/images.png" alt="맥북사진" />
                     </a>
                 </div>
                 <div class="foot_info">
                     <div class="foot_info_list">
                             <dl>
-                                <dt></dt>
-                                <dd>TEAM 4</dd>
+                                <dt>빅데이터 활용 인공지능 기반 개인화 서비스 구축 개발자 과정 : </dt>
+                                <dd> TEAM 4 Project</dd>
+                                <dd>노트북 쇼핑몰 및 기능별 상품 추천시스템</dd>
                             </dl>
-                    </div>
-                    <div class="foot_info_list">
-                        <dl>
-                            <dt></dt>
-                            <dd>노트북 쇼핑몰 및 기능별 상품 추천시스템</dd>
-                        </dl>
-                    </div>
-                    <div class="foot_info_list">
-                        <dl>
-                            <dt></dt>
-                            <dd></dd>
-                        </dl>
                     </div>
                 </div>
             </div>
