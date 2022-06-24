@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.member.MemberDAOInter">
+  <!-- 회원 가입 -->
+  <insert id="member_create"
+    parameterType="dev.mvc.member.MemberVO">
+    insert into member(memberno, id, pw, username, zipcode, address1, address2, gender, birth, tel, signdate)
+    values(member_seq.nextval, #{id}, #{pw}, #{username}, #{zipcode}, #{address1}, #{address2}, #{gender},
+    #{birth}, #{tel}, sysdate)
+  </insert>
+
+  <!-- 회원 검색(주민등록번호 대신 생년월일) -->
+  <select id="member_search" resultType="dev.mvc.member.MemberVO">
+    select * from member
+    where username = #{username} and birth = #{birth}
+  </select>
+
+  <!-- 회원ID체크 -->
+  <select id="member_idcheck" resultType="int"
+    parameterType="String">
+    select count(id) as cnt from member where id = #{id}
+  </select>
+
+  <!-- 회원 비밀번호변경 -->
+  <update id="member_search_pw_update" parameterType="HashMap">
+    update
+    member set pw=#{pw} where memberno = #{memberno};
+  </update>
+
+  <!-- 회원 정보 변경 -->
+  <update id="member_update"
+    parameterType="dev.mvc.member.MemberVO">
+    update member set tel=#{tel}, zipcode=#{zipcode},
+    address1=#{address1}, address2=#{address2} where memberno =
+    #{memberno}
+  </update>
+  
+  <update id="member_pwupdate"
+    parameterType="dev.mvc.member.MemberVO">
+    update member set pw=#{pw} where memberno = #{memberno} AND pw=#{now_pw}
+  </update>
+
+  <!-- 회원 목록 -->
+  <select id="member_list" resultType="dev.mvc.member.MemberVO">
+    select * from member order
+    by memberno
+  </select>
+
+  <!-- memberno로 회원 정보 조회 -->
+  <select id="member_read" resultType="dev.mvc.member.MemberVO"
+    parameterType="int">
+    SELECT * FROM member WHERE memberno = #{memberno}
+  </select>
+
+  <!-- id로 회원 정보 조회 -->
+  <select id="member_readById"
+    resultType="dev.mvc.member.MemberVO" parameterType="String">
+    SELECT * FROM
+    member WHERE id = #{id}
+  </select>
+
+  <!-- 회원 탈퇴 -->
+  <delete id="delete" parameterType="int">
+    DELETE from member
+    where
+    memberno=#{memberno}
+  </delete>
+
+  <!-- 로그인 -->
+  <select id="login" resultType="int" parameterType="Map">
+    SELECT
+    COUNT(memberno) as cnt
+    FROM member
+    WHERE id=#{id} AND pw=#{pw}
+  </select>
+
+  <!-- 현재 비밀번호 검사 -->
+  <select id="passwd_check" parameterType="HashMap"
+    resultType="int">
+    SELECT COUNT(memberno) as cnt
+    FROM member
+    WHERE
+    memberno=#{memberno} AND pw=#{pw}
+  </select>
+
+  <select id="admin_login" resultType="int" parameterType="Map">
+    SELECT
+    COUNT(adminno) as cnt
+    FROM admin
+    WHERE id=#{id} AND pw=#{pw}
+  </select>
+
+  <select id="admin_passwd_check" parameterType="HashMap"
+    resultType="int">
+    SELECT COUNT(adminno) as cnt
+    FROM admin
+    WHERE
+    adminno=#{adminno} AND pw=#{pw}
+  </select>
+
+  <select id="member_list_paging"
+    resultType="dev.mvc.member.MemberVO" parameterType="HashMap">
+    select
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,r
+    from(
+    select
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,
+    rownum as r from (
+    select * from member order by memberno))
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+  </select>
+
+  <select id="member_list_search_paging"
+    resultType="dev.mvc.member.MemberVO" parameterType="HashMap">
+    select
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,r
+    from(
+          select
+                  memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,
+                  rownum as r from (
+                                    select * from member
+    <choose>
+      <when test="word==null or word==''">
+        order by rownum
+      </when>
+      <when test="cate=='id' and (word!=null or word!='')">
+        where id LIKE '%'||#{word}||'%' order by rownum
+      </when>
+      <when test="cate=='username' and (word!=null or word!='')">
+        where username LIKE '%'||#{word}||'%' order by rownum
+      </when>
+      <when test="cate=='tel' and (word!=null or word!='')">
+        where tel LIKE '%'||#{word}||'%' order by rownum
+      </when>
+      <when test="cate=='address1' and (word!=null or word!='')">
+        where address1 LIKE '%'||#{word}||'%' order by rownum
+      </when>
+    </choose>
+    )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+  </select>
+
+  <select id="search_count" resultType="int"
+    parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM member
+    <choose>
+      <when test="cate=='id' and (word!=null or word!='')">
+        where id LIKE '%'||#{word}||'%'
+      </when>
+      <when test="cate=='username' and (word!=null or word!='')">
+        where username LIKE '%'||#{word}||'%'
+      </when>
+      <when test="cate=='tel' and (word!=null or word!='')">
+        where tel LIKE '%'||#{word}||'%'
+      </when>
+      <when test="cate=='address1' and (word!=null or word!='')">
+        where address1 LIKE '%'||#{word}||'%'
+      </when>
+    </choose>
+
+  </select>
+
+</mapper> 
