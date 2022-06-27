@@ -114,7 +114,7 @@ public class ContentsCont {
 
         long size1 = mf.getSize(); // 파일 크기
 
-        if (size1 > 0) { // 파일 크기 체크
+        if (size1 > 0) { // 파일 크기 체크 
             // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
             file1saved = Upload.saveFileSpring(mf, upDir);
 

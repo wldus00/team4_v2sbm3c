@@ -229,7 +229,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" style='font-size: 0.8em;'>패스워드</label>    
             <div class="col-md-8">
-              <input type='password' class="form-control" name='passwd' id='passwd' 
+              <input type='password' class="form-control" name='pw' id='pw' 
                         value='${ck_passwd }' required="required" style='width: 40%;' placeholder="패스워드">
               <Label>
                 <input type='checkbox' name='passwd_save' value='Y' 

@@ -8,6 +8,20 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>노트북 쇼핑몰</title>
+<c:set var="contentsno" value="${contentsVO.contentsno }" />
+<c:set var="nbno" value="${contentsVO.nbno }" />
+<c:set var="title" value="${contentsVO.title }" />        
+<c:set var="price" value="${contentsVO.price }" />
+<c:set var="dc" value="${contentsVO.dc }" />
+<c:set var="saleprice" value="${contentsVO.saleprice }" />
+<c:set var="point" value="${contentsVO.point }" />
+<c:set var="salecnt" value="${contentsVO.salecnt }" />
+<c:set var="file1" value="${contentsVO.file1 }" />
+<c:set var="file1saved" value="${contentsVO.file1saved }" />
+<c:set var="thumb1" value="${contentsVO.thumb1 }" />
+<c:set var="content" value="${contentsVO.content }" />
+<c:set var="word" value="${contentsVO.word }" />
+<c:set var="size1_label" value="${contentsVO.size1_label }" />
  
 <link href="/css/main.css" rel="Stylesheet" type="text/css">
  
@@ -244,7 +258,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" style='font-size: 0.8em;'>패스워드</label>    
             <div class="col-md-8">
-              <input type='password' class="form-control" name='passwd' id='passwd' 
+              <input type='password' class="form-control" name='pw' id='pw' 
                         value='${ck_passwd }' required="required" style='width: 40%;' placeholder="패스워드">
               <Label>
                 <input type='checkbox' name='passwd_save' value='Y' 
@@ -264,20 +278,7 @@
   
   </DIV>
   <%-- ******************** Ajax 기반 로그인 폼 종료 ******************** --%>
-    <c:set var="contentsno" value="${contentsVO.contentsno }" />
-<c:set var="nbno" value="${contentsVO.nbno }" />
-<c:set var="title" value="${contentsVO.title }" />        
-<c:set var="price" value="${contentsVO.price }" />
-<c:set var="dc" value="${contentsVO.dc }" />
-<c:set var="saleprice" value="${contentsVO.saleprice }" />
-<c:set var="point" value="${contentsVO.point }" />
-<c:set var="salecnt" value="${contentsVO.salecnt }" />
-<c:set var="file1" value="${contentsVO.file1 }" />
-<c:set var="file1saved" value="${contentsVO.file1saved }" />
-<c:set var="thumb1" value="${contentsVO.thumb1 }" />
-<c:set var="content" value="${contentsVO.content }" />
-<c:set var="word" value="${contentsVO.word }" />
-<c:set var="size1_label" value="${contentsVO.size1_label }" />
+    
 
   <fieldset class="fieldset_basic">
     <ul>
