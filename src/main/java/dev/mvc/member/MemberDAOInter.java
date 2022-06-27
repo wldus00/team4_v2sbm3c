@@ -33,4 +33,6 @@ public interface MemberDAOInter {
     public List<MemberVO> member_list_search_paging(HashMap<String, Object> Map);  
     
     public int search_count(HashMap<String, Object> hashMap);
+    
+    public int member_pwupdate(MemberVO memberVO);
 }

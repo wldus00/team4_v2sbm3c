@@ -206,4 +206,10 @@ public class MemberProc implements MemberProcInter{
         return list;
     }
 
+    @Override
+    public int member_pwupdate(MemberVO memberVO) {
+        int cnt = this.memberDAO.member_pwupdate(memberVO);
+        return cnt;
+    }
+
 }

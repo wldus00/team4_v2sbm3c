@@ -37,6 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     address1=#{address1}, address2=#{address2} where memberno =
     #{memberno}
   </update>
+  
+  <update id="member_pwupdate"
+    parameterType="dev.mvc.member.MemberVO">
+    update member set pw=#{pw} where memberno = #{memberno} AND pw=#{now_pw}
+  </update>
 
   <!-- 회원 목록 -->
   <select id="member_list" resultType="dev.mvc.member.MemberVO">
@@ -99,10 +104,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="member_list_paging"
     resultType="dev.mvc.member.MemberVO" parameterType="HashMap">
     select
-    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,r
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,r
     from(
     select
-    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,
     rownum as r from (
     select * from member order by memberno))
     WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
@@ -111,10 +116,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="member_list_search_paging"
     resultType="dev.mvc.member.MemberVO" parameterType="HashMap">
     select
-    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,r
+    memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,r
     from(
           select
-                  memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,
+                  memberno,id,pw,username,zipcode,address1,address2,gender,birth,tel,signdate,grade,
                   rownum as r from (
                                     select * from member
     <choose>

@@ -14,6 +14,7 @@ public class MemberVO {
     private String tel;
     private String signdate;
     private String grade;
+    private String now_pw;
     
     public MemberVO() {
     }
@@ -54,6 +55,10 @@ public class MemberVO {
     public String getGrade() {
         return grade;
     }
+    
+    public String getNow_pw() {
+        return now_pw;
+    }
     public void setMemberno(String memberno) {
         this.memberno = memberno;
     }
@@ -89,6 +94,10 @@ public class MemberVO {
     }
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+    
+    public void setNow_pw(String now_pw) {
+        this.now_pw = now_pw;
     }
     
     

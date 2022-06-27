@@ -43,5 +43,5 @@ public interface MemberProcInter {
      */
     public String pagingBox(String cate, int search_count, int now_page, String word);
     
-    
+    public int member_pwupdate(MemberVO memberVO);
 }

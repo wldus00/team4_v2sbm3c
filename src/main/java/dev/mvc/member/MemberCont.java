@@ -198,12 +198,9 @@ public class MemberCont {
           mav.setViewName("redirect:/index.do");
         }
       } else {
-        mav.addObject("url", "login_fail_msg");
-        mav.setViewName("redirect:/member/msg.do"); 
+        mav.addObject("msg", "로그인 실패");
+        mav.setViewName("/member/msg_fail");
       }
-          
-      
-      
       return mav;
     }    
     
@@ -350,5 +347,40 @@ public class MemberCont {
       json.put("raddress2", memberVO.getAddress2());
       
       return json.toString();
+    }
+    
+    @RequestMapping(value = "/member/member_pwupdate.do", method = RequestMethod.GET)
+    public ModelAndView pwupdate() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("member/member_pwupdate");
+
+        return mav;
+    }
+    
+    @RequestMapping(value="/member/member_pwupdate.do", method=RequestMethod.POST)
+    public ModelAndView member_pwupdate(MemberVO memberVO) {
+      ModelAndView mav = new ModelAndView();
+      
+        int cnt = this.memberProc.member_pwupdate(memberVO);
+        mav.addObject("cnt", cnt);
+        if (cnt == 1) {
+        mav.addObject("msg","비밀번호 변경 성공");
+        mav.setViewName("/member/msg"); // /webapp/WEB-INF/views/member/list.jsp
+        System.out.println("성공!");
+        System.out.println("cnt : "+ cnt);
+        } else {
+            mav.addObject("msg","비밀번호 변경 실패");
+            mav.setViewName("/member/msg_fail"); // /webapp/WEB-INF/views/member/list.jsp
+        }
+      return mav;
+    }
+    
+    @RequestMapping(value = "/member/member_delete.do", method = RequestMethod.GET)
+    public ModelAndView member_delete(int memberno) {
+        ModelAndView mav = new ModelAndView();
+        
+        int cnt = this.memberProc.delete(memberno);
+        mav.setViewName("redirect:./list.do");
+        return mav;
     }
 }
