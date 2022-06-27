@@ -63,7 +63,7 @@
                     Youtube
                 </button>
                   <div class="dropdown-content">
-                    <a href="#">Youtube 목록</a>
+                    <a href="/you/list_all.do">Youtube 목록</a>
                   </div>
               </div>
             <div class="dropdown">
@@ -84,6 +84,15 @@
                         <a href="/order_pay/list_by_memberno.do">주문 결제 목록</a>
                     </div>
             </div>
+             <div class="dropdown">
+                <button class="dropbtn">
+                    챗봇
+                </button>
+                  <div class="dropdown-content">
+                    <a href="javascript: chatting_intent()">챗봇</a>
+                  </div>
+            </div>
+            
         </div>
       <script type="text/javascript">
       function openPopup() {
@@ -95,8 +104,17 @@
           window.open('/recommend/recommend_nb/start.do', '_blank', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
           return false;
         }
-      </script>
+      function chatting_intent(){
+          var url = './chatbot/chatting_intent.do/';  // URL: path('chatbot_intent/chatting/', views.chatting_intent),  # chatting.html
+          var win = window.open(url, '챗봇 intent', 'width=700px, height=630px');
 
+          var x = (screen.width - 700) / 2;
+          var y = (screen.height - 630) / 2;
+
+          win.moveTo(x, y); // 화면 중앙으로 이동
+        }
+      </script>
+	
     
     </header>
   
