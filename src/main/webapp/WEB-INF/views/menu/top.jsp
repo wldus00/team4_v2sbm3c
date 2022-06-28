@@ -55,7 +55,9 @@
                     관심 분야
                 </button>
                 <div class="dropdown-content">
-                    <a href="#" onclick="javascript:openPopup();">추천시스템</a>
+                    <a href="#" onclick="javascript:openRecom();">추천시스템</a>
+                    <a href="#" onclick="javascript:openRecomMF();">추천시스템<br>(MF)</a>
+                    <a href="#" onclick="javascript:openRecomNB();">추천시스템<br>(Naive-Bayes)</a>
                 </div>
                 </div>
                 <div class="dropdown">
@@ -95,15 +97,36 @@
             
         </div>
       <script type="text/javascript">
-      function openPopup() {
-          let _width = '800';
-          let _height = '500';
+      function openRecom() {
+          let _width = '1400';
+          let _height = '640';
 
           var _left = Math.ceil(( window.screen.width - _width )/2);
           var _top = Math.ceil(( window.screen.height - _height )/2); 
           window.open('/recommend/recommend_nb/start.do', '_blank', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
           return false;
         }
+
+      function openRecomMF() {
+          let _width = '1060';
+          let _height = '950';
+
+          var _left = Math.ceil(( window.screen.width - _width )/2);
+          var _top = Math.ceil(( window.screen.height - _height )/2); 
+          window.open('/recommend/recommend_nb_req/start.do', '_blank', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+          return false;
+        }
+
+      function openRecomNB() {
+          let _width = '1460';
+          let _height = '840';
+
+          var _left = Math.ceil(( window.screen.width - _width )/2);
+          var _top = Math.ceil(( window.screen.height - _height )/2); 
+          window.open('/recommend/recommend_naivebayes/start.do', '_blank', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+          return false;
+        }
+      
       function chatting_intent(){
           var url = './chatbot/chatting_intent.do/';  // URL: path('chatbot_intent/chatting/', views.chatting_intent),  # chatting.html
           var win = window.open(url, '챗봇 intent', 'width=700px, height=630px');

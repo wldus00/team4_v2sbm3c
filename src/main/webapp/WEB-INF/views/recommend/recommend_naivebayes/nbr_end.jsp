@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>관심분야 등록</title>
+    <title>노트북 추천 시스템</title>
     <link href="/css/style.css" rel="Stylesheet" type="text/css">
     <script type="text/JavaScript"
                  src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,39 +14,42 @@
     
     <script type="text/javascript">
         $(function() {
-            send();  // Django ajax 호출
             $('#btn_previous').on('click', function() { history.back(); });   // 이전
             $('#btn_close').on('click', function() { window.close(); });      // 윈도우 닫기
-            $('#btn_reset').on('click', function() { location.href = "/recommend/recommend_nb/start.do"; });      // 처음으로 돌아가기
+            $('#btn_reset').on('click', function() { location.href = "/recommend/recommend_naivebayes/start.do"; });  // 처음으로 돌아가기
+          
+            send();  // Django ajax 호출
         });
 
         function send() {
             var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
             // alert('params: ' + params);  // 수신 데이터 확인
             $.ajax({
-              url: 'http://localhost:8000/recommend_nb/end_ajax/',  // Spring Boot -> Django 호출
+              url: 'http://localhost:8000/recommend_naivebayes/end/',  // Spring Boot -> Django 호출
               type: 'get',  // get or post
               cache: false, // 응답 결과 임시 저장 취소
               async: true,  // true: 비동기 통신
               dataType: 'json', // 응답 형식: json, html, xml...
               data: params,      // 데이터
               success: function(rdata) { // 응답이 온경우
-                // alert(rdata.index);
-                if (rdata.index == 0) {
-                    $('#ah').css('display',''); // show
-                } else if(rdata.index == 1) {
-                    $('#al').css('display','');
-                } else if(rdata.index == 2) {
-                    $('#wg').css('display','');
-                } else if(rdata.index == 3) {
-                    $('#wh').css('display','');
-                }  else {
-                    $('#wl').css('display','');
-                } 
-
+            	// alert(rdata.index);
+                
+            	  if (rdata.index == 0) {
+                      $('#ah').css('display',''); // show
+                  } else if(rdata.index == 1) {
+                      $('#al').css('display','');
+                  } else if(rdata.index == 2) {
+                      $('#wg').css('display','');
+                  } else if(rdata.index == 3) {
+                      $('#wh').css('display','');
+                  }  else {
+                      $('#wl').css('display','');
+                  } 
+                  
+                
                 $('#panel').html("");  // animation gif 삭제
                 $('#panel').css('display', 'none'); // 숨겨진 태그의 출력
-
+                             
                 // --------------------------------------------------
                 // 분류 정보에 따른 상품 이미지 SELECT
                 //  --------------------------------------------------
@@ -73,26 +76,25 @@
             padding: 5px;
             cursor: pointer;
         }
+        
+        .dataframe{
+            margin: 30px auto;
+        }
 
     </style>
     
 </head>
 <body>
-
 <DIV style='display: none;'>
     <form name='frm' id='frm'>
-        <input type='hidden' name='step1' value='${param.step1 }'>
-        <input type='hidden' name='step2' value='${param.step2 }'>
-        <input type='hidden' name='step3' value='${param.step3 }'>
-        <input type='hidden' name='step4' value='${param.step4 }'>
-        <input type='hidden' name='step5' value='${param.step5 }'>
+        <input type='hidden' name='send_user' value='${param.send_user }'>
     </form>
 </DIV>
 
 <DIV class="container">
-    <H2>참여해주셔서 감사합니다.</H2>
-    <H2>추천 노트북</H2>
-
+    <H2>회원님께 추천 드리는 카테고리</H2>
+    <DIV id='panel' style='margin: 30px auto; width: 90%;'></DIV>
+    
     <DIV id='panel' style='margin: 30px auto; width: 90%;'></DIV>
     
     <DIV id='panel_img' style='margin: 0px auto; width: 90%;'>
@@ -213,14 +215,12 @@
         </DIV>
     </DIV>
     
-    <form id='frm' name='frm' action='' method='GET'>
         <br>
         <DIV style="text-align:center;">
             <button type='button' id='btn_previous' class="btn btn-info">이전</button>
             <button type='button' id='btn_close' class="btn btn-info">종료</button>
             <button type='button' id='btn_reset' class="btn btn-info">처음으로</button>
         </DIV>
-    </form>
 </DIV>
 </body>
 </html>

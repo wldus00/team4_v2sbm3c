@@ -153,7 +153,7 @@ function clearInput() {
         <div style='margin: 0px auto;'>
             메시지 &nbsp&nbsp&nbsp&nbsp
             <input id="chatting" name='chatting' placeholder="보내실 메시지를 입력하세요."
-                   value="10일에 게이밍노트북 구매가능한가요?">
+                   value="오늘 게이밍노트북 주문 가능한가요?">
             <BR>
             <div id=button_cate>
             <button onclick="send()" id="sendBtn" class="btn btn-info">보내기</button>

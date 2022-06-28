@@ -93,6 +93,24 @@ public class TensorflowCont {
         
         return mav;
     }
+    
+    // http://localhost:9091/recommend/recommend_naivebayes/start.do
+    @RequestMapping(value = {"/recommend/recommend_naivebayes/start.do"}, method = RequestMethod.GET)
+    public ModelAndView nbr_start() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/recommend/recommend_naivebayes/nbr_start");  // /WEB-INF/views/recommend/recommend_book/end.jsp
+        
+        return mav;
+    }
+    
+    // http://localhost:9091/recommend/recommend_naivebayes/end.do
+    @RequestMapping(value = {"/recommend/recommend_naivebayes/end.do"}, method = RequestMethod.GET)
+    public ModelAndView nbr_end() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/recommend/recommend_naivebayes/nbr_end");  // /WEB-INF/views/recommend/recommend_book/end.jsp
+        
+        return mav;
+    }
 
 }
 
