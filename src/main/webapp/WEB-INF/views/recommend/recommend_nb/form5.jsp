@@ -55,7 +55,7 @@
     
 </head>
 <body>
-<DIV class="container">
+<DIV class="container" style='margin-top: 100px;'>
     <H2>5/5 단계입니다. 마지막 단계입니다.</H2>
     <DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
     <form id='frm' name='frm' action='/recommend/recommend_nb/end.do' method='GET'>

@@ -89,7 +89,7 @@
     </form>
 </DIV>
 
-<DIV class="container">
+<DIV class="container" style='margin-top: 75px;'>
     <H2>참여해주셔서 감사합니다.</H2>
     <H2>추천 노트북</H2>
 

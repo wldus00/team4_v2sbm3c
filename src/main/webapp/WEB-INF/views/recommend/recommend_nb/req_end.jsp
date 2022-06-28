@@ -99,11 +99,11 @@
     </form>
 </DIV>
 
-<DIV class="container">
+<DIV class="container" style='margin-top: 60px;'>
     <H2>회원번호 ${param.user_id }번의 추천 노트북</H2>
-    <DIV id='panel' style='margin: 30px auto; width: 90%;'></DIV>
+    <DIV id='panel' style='margin: 30px auto; width: 90%; margin-top: 50px;'></DIV>
     
-    <DIV id='df' style='display: none; margin: 30px auto;'>
+    <DIV id='df' style='display: none; margin: 30px auto; margin-top: 60px;'>
     </DIV>
     <br>
     <DIV style="text-align:center;">

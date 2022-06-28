@@ -22,9 +22,9 @@
 </head>
 <body>
 <DIV class="container">
-    <H2 style="text-align: center;">관심분야 등록</H2>
+    <H2 style="text-align: center; margin-top: 120px;">관심분야 등록</H2>
 
-    <DIV style="text-align:center; margin: 50px auto;">
+    <DIV style="text-align:center; margin: 50px auto; margin-top: 120px;">
         관심 분야를 등록하시면 최적의 노트북 추천 서비스를 이용하실수 있습니다.<br><br>
         등록은 관련된 상품을 선택하며 몇번의 클릭만으로 바로 종료됩니다.
     </DIV>

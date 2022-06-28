@@ -91,7 +91,7 @@
     </form>
 </DIV>
 
-<DIV class="container">
+<DIV class="container" style='margin-top: 165px;'>
     <H2>회원님께 추천 드리는 카테고리</H2>
     <DIV id='panel' style='margin: 30px auto; width: 90%;'></DIV>
     

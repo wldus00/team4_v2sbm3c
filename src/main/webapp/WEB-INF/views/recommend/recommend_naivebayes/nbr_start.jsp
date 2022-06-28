@@ -63,7 +63,7 @@
      </style>
 </head>
 <body>
-<DIV class="container">
+<DIV class="container" style="margin-top: 60px;">
     <H2 style="text-align: center;">노트북 추천</H2>
 
     <DIV style="text-align:center; margin: 0px auto;">
