@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       SELECT notice_seq.nextval FROM dual
     </selectKey>
     
-    INSERT INTO notice(noticeno,MEMBERNO, title, content,replycnt, notice_cnt,
+    INSERT INTO notice(noticeno,MEMBERNO, title, content,
                                      file1, file1saved, thumb1, size1, rdate)
-    VALUES(#{noticeno}, #{MEMBERNO}, #{title}, #{content}, replycnt, notice_cnt,
+    VALUES(#{noticeno}, #{MEMBERNO}, #{title}, #{content},
                 #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
   </insert>
   
