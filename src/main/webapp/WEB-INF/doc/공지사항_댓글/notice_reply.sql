@@ -15,6 +15,8 @@ CREATE TABLE notice(
 		size1                         		NUMBER(10)		 NULL ,
 		rdate                         		DATE		 NOT NULL
 );
+alter table member add replycnt NUMBER(7) Default 0 NOT NULL;
+alter table member add notice_cnt NUMBER(7) Default 0 NOT NULL;
 
 COMMENT ON TABLE notice is '공지사항';
 COMMENT ON COLUMN notice.noticeno is '공지사항번호';
