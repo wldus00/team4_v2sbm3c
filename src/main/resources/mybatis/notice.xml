@@ -11,15 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       SELECT notice_seq.nextval FROM dual
     </selectKey>
     
-    INSERT INTO notice(noticeno,MEMBERNO, title, content,
+    INSERT INTO notice(noticeno,MEMBERNO, title, content,replycnt, notice_cnt,
                                      file1, file1saved, thumb1, size1, rdate)
-    VALUES(#{noticeno}, #{MEMBERNO}, #{title}, #{content},
+    VALUES(#{noticeno}, #{MEMBERNO}, #{title}, #{content}, replycnt, notice_cnt,
                 #{file1}, #{file1saved}, #{thumb1}, #{size1}, sysdate)
   </insert>
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
-    SELECT noticeno, MEMBERNO, title, content, rdate,
+    SELECT noticeno, MEMBERNO, title, content, replycnt, notice_cnt, rdate,
               file1, file1saved, thumb1, size1
     FROM notice
     WHERE noticeno = #{noticeno}
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 특정 카테고리의 등록된 글목록 -->
   <select id="list_by_notice" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
-    SELECT noticeno, MEMBERNO, title, content, rdate,
+    SELECT noticeno, MEMBERNO, title, content,replycnt, notice_cnt, rdate,
               file1, file1saved, thumb1, size1
     FROM notice
     ORDER BY noticeno DESC
@@ -59,4 +59,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM notice
     WHERE noticeno=#{noticeno}
   </delete>
+  
+     <!-- 공지사항 조회수 증가 -->
+   <update id="views" parameterType="int">
+     UPDATE notice
+     SET notice_cnt = notice_cnt + 1
+     WHERE noticeno = #{noticeno}
+   </update>
+   
+     <!-- 댓글 수 증가 -->
+   <update id="increaseReplycnt" parameterType="int">
+     UPDATE notice
+     SET replycnt = replycnt + 1
+     WHERE noticeno = #{noticeno}
+   </update>
+
+   <!-- 댓글 수 감소 -->
+   <update id="decreaseReplycnt" parameterType="int">
+     UPDATE notice
+     SET replycnt = replycnt - 1
+     WHERE noticeno = #{noticeno}
+   </update>
+   
+   
+   
 </mapper>

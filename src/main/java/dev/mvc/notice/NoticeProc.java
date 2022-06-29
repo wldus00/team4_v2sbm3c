@@ -66,9 +66,12 @@ public class NoticeProc implements NoticeProcInter {
             
             title = Tool.convertChar(title); // 특수 문자 처리
             content = Tool.convertChar(content);
-
+            
+            
+            
             noticeVO.setTitle(title);
             noticeVO.setContent(content);
+            
         }
 
         return list;
@@ -90,5 +93,23 @@ public class NoticeProc implements NoticeProcInter {
     public int delete(int noticeno) {
         int cnt = this.noticeDAO.delete(noticeno);
         return cnt;
+    }
+
+    @Override
+    public int increaseReplycnt(int noticeno) {
+      int count = noticeDAO.increaseReplycnt(noticeno);
+      return count;
+    }
+
+    @Override
+    public int decreaseReplycnt(int noticeno) {
+      int count = noticeDAO.decreaseReplycnt(noticeno);
+      return count;
+    }
+
+    @Override
+    public int views(int noticeno) {
+        int notice_cnt = this.noticeDAO.views(noticeno);
+        return notice_cnt;
     }
 }

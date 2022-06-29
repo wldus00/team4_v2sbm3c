@@ -22,7 +22,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" />
- <br><br><br>
+ <div id="main"><br>
 <DIV class='title_line'>유튜브 그룹 > ${param.title }</DIV>
 
 <DIV class='content_body'>
@@ -72,7 +72,7 @@
    
   </TABLE>
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
 </body>

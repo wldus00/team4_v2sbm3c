@@ -3,6 +3,7 @@ package dev.mvc.notice;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,33 +140,82 @@ public class NoticeCont {
      @RequestMapping(value = "/notice/list_by_notice.do", method = RequestMethod.GET)
       public ModelAndView list_by_notice() { 
         ModelAndView mav = new  ModelAndView(); 
-        mav.setViewName("/notice/list_by_notice");
-        
-        // 테이블 이미지 기반, /webapp/notice/list_by_noticeno.jsp
-        mav.setViewName("/notice/list_by_notice");
         
         List<NoticeVO> list = this.noticeProc.list_by_notice();
+
         mav.addObject("list", list);
         
+        mav.setViewName("/notice/list_by_notice");
         return mav; // forward 
       }
-     
+
+    
+     // http://localhost:9091/contents/read.do
      /**
       * 조회
-      * 
       * @return
       */
-     @RequestMapping(value = "/notice/read.do", method = RequestMethod.GET)
-     public ModelAndView read(int noticeno) {
-         ModelAndView mav = new ModelAndView();
-
-         NoticeVO noticeVO = this.noticeProc.read(noticeno);
-         mav.addObject("noticeVO", noticeVO); // request.setAttribute("noticeVO", noticeVO);
+     @RequestMapping(value="/notice/read.do", method=RequestMethod.GET )
+     public ModelAndView read_ajax(HttpServletRequest request, int noticeno) {
+       
+       
+       int notice_cnt = this.noticeProc.views(noticeno);
+       
+       List<NoticeVO> list = this.noticeProc.list_by_notice();
+       
          
-         //mav.addObject("now_page", now_page);
-         mav.setViewName("/notice/read"); // /WEB-INF/views/notice/read.jsp
+       ModelAndView mav = new ModelAndView();
+       
+       NoticeVO noticeVO = this.noticeProc.read(noticeno);
+       mav.addObject("list", list);
+       mav.addObject("notice_cnt", notice_cnt);
+       mav.addObject("noticeVO", noticeVO); // request.setAttribute("noticeVO", noticeVO);
+       
+       // 단순 read
+       // mav.setViewName("/contents/read"); // /WEB-INF/views/contents/read.jsp
+       
+       // 쇼핑 기능 추가
+       // mav.setViewName("/contents/read_cookie"); // /WEB-INF/views/contents/read_cookie.jsp
+       
+       // 댓글 기능 추가 
+       mav.setViewName("/notice/read"); // /WEB-INF/views/contents/read_cookie_reply.jsp
+       
+       // -------------------------------------------------------------------------------
+       // 쇼핑 카트 장바구니에 상품 등록전 로그인 폼 출력 관련 쿠기  
+       // -------------------------------------------------------------------------------
+       Cookie[] cookies = request.getCookies();
+       Cookie cookie = null;
 
-         return mav;
+       String ck_id = ""; // id 저장
+       String ck_id_save = ""; // id 저장 여부를 체크
+       String ck_passwd = ""; // passwd 저장
+       String ck_passwd_save = ""; // passwd 저장 여부를 체크
+
+       if (cookies != null) {  // Cookie 변수가 있다면
+         for (int i=0; i < cookies.length; i++){
+           cookie = cookies[i]; // 쿠키 객체 추출
+           
+           if (cookie.getName().equals("ck_id")){
+             ck_id = cookie.getValue();                                 // Cookie에 저장된 id
+           }else if(cookie.getName().equals("ck_id_save")){
+             ck_id_save = cookie.getValue();                          // Cookie에 id를 저장 할 것인지의 여부, Y, N
+           }else if (cookie.getName().equals("ck_passwd")){
+             ck_passwd = cookie.getValue();                          // Cookie에 저장된 password
+           }else if(cookie.getName().equals("ck_passwd_save")){
+             ck_passwd_save = cookie.getValue();                  // Cookie에 password를 저장 할 것인지의 여부, Y, N
+           }
+         }
+       }
+       
+       System.out.println("-> ck_id: " + ck_id);
+       
+       mav.addObject("ck_id", ck_id); 
+       mav.addObject("ck_id_save", ck_id_save);
+       mav.addObject("ck_passwd", ck_passwd);
+       mav.addObject("ck_passwd_save", ck_passwd_save);
+       // -------------------------------------------------------------------------------
+       
+       return mav;
      }
      
      /**

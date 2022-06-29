@@ -7,6 +7,8 @@ public class NoticeVO {
     private int MEMBERNO;
     private String title = "";
     private String content = "";
+    private int peplycnt;
+    private int notice_cnt;
     private String file1 = "";
     private String file1saved = "";
     private String thumb1 = "";
@@ -54,6 +56,25 @@ public class NoticeVO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+    
+
+
+
+    public int getPeplycnt() {
+        return peplycnt;
+    }
+
+    public void setPeplycnt(int peplycnt) {
+        this.peplycnt = peplycnt;
+    }
+
+    public int getNotice_cnt() {
+        return notice_cnt;
+    }
+
+    public void setNotice_cnt(int notice_cnt) {
+        this.notice_cnt = notice_cnt;
     }
 
     public String getFile1() {

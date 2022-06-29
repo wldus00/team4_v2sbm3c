@@ -24,7 +24,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" />
- 
+ <div id="main"><br>
 <DIV class='title_line'>
   <A href="../yougrp/list.do" class='title_link'>카테고리 그룹</A> > 
   <A href="../you/list_by_ytgrpno.do?ytgrpno=${ytgrpVO.ytgrpno }" class='title_link'>${ytgrpVO.title }</A> >
@@ -78,7 +78,7 @@
   </div>
 
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
 </body>

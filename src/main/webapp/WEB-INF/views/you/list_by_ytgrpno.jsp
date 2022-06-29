@@ -22,7 +22,7 @@
  
 <body>
 <jsp:include page="../menu/top.jsp" />
-<br>
+ <div id="main"><br>
 <DIV class='title_line'><A href="../categrp/list.do" class='title_link'>카테고리 그룹</A> > ${categrpVO.name }</DIV>
 
 <DIV class='content_body'>
@@ -81,7 +81,7 @@
    
   </TABLE>
 </DIV>
-
+</div>
  
 <jsp:include page="../menu/bottom.jsp" />
 </body>

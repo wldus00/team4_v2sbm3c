@@ -368,9 +368,23 @@ img {
     width: 100%;
 }
 .notice_title {
-    width: 47%;
+    width: 48%;
     height: 260px;
     float: left;
     margin-right: 10px;
     margin-bottom: 30px;
+}
+
+/* notice 댓글 부분  */
+#reply_list {
+    text-align: left;
+}
+.reply {
+    width: 80%;
+}
+
+#reply_list img {
+    width: 20px;
+    height: 20px;
+    float: right;
 }

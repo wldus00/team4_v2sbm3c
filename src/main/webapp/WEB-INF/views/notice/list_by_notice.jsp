@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>공지사항 게시판</title>
  
 <link href="/css/main.css" rel="Stylesheet" type="text/css">
 
@@ -45,27 +45,31 @@
   <table class="table table-striped" style='width: 100%;'>
     <colgroup>
       <col style="width: 10%;"></col>
+      <col style="width: 15%;"></col>
+      <col style="width: 40%;"></col>
       <col style="width: 20%;"></col>
-      <col style="width: 50%;"></col>
       <col style="width: 10%;"></col>
-      <col style="width: 10%;"></col>
+      <col style="width: 5%;"></col>
     </colgroup>
     <%-- table 컬럼 --%>
-<!--     <thead>
+     <thead>
       <tr>
-        <th style='text-align: center;'>파일</th>
-        <th style='text-align: center;'>상품명</th>
-        <th style='text-align: center;'>정가, 할인률, 판매가, 포인트</th>
+        <th style='text-align: center;'>이미지</th>
+        <th style='text-align: center;'>제목</th>
+        <th style='text-align: center;'>글</th>
+        <th style='text-align: center;'>등록일</th>
+        <th style='text-align: center;'>조회수</th>
         <th style='text-align: center;'>기타</th>
       </tr>
     
-    </thead> -->
+    </thead> 
     
     <%-- table 내용 --%>
     <tbody>
       <c:forEach var="noticeVO" items="${list }">
         <c:set var="noticeno" value="${noticeVO.noticeno }" />
         <c:set var="thumb1" value="${noticeVO.thumb1 }" />
+        
         
         <tr> 
           <td style='vertical-align: middle; text-align: center;'>
@@ -88,9 +92,16 @@
           <td style='vertical-align: middle;'>
             ${noticeVO.rdate}
           </td>
+          <td style='vertical-align: middle;'>
+            <strong>${noticeVO.notice_cnt}</strong>
+          </td>
           <td style='vertical-align: middle; text-align: center;'>
+              <c:choose>
+              <c:when test="${sessionScope.grade < 10}">
             <A href="./update_text.do?noticeno=${noticeno }" title="수정"><i class="fa-regular fa-pen-to-square"></i></A>
             <A href="./delete.do?noticeno=${noticeno }" title="삭제"><i class="fa-solid fa-eraser"></i></A>
+            </c:when>
+            </c:choose>
           </td>
         </tr>
       </c:forEach>

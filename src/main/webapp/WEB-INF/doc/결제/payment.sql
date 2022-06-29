@@ -30,10 +30,11 @@ COMMENT ON COLUMN NBTYPE.NBGRPNO is '노트북 그룹 번호';
 COMMENT ON COLUMN NBTYPE.NAME is '기능별이름';
 COMMENT ON COLUMN NBTYPE.RDATE is '등록일';
 
-
+commit;
 /**********************************/
 /* Table Name: 컨텐츠 - 맥북 상품 */
 /**********************************/
+DELETE FROM CONTENTS;
 CREATE TABLE CONTENTS(
 		CONTENTSNO                    		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		NBNO                          		NUMBER(10)		 NOT NULL,
@@ -134,6 +135,7 @@ COMMENT ON COLUMN CART.RDATE is '날짜';
 /* Table Name: 주문_결재 */
 /**********************************/
 DROP TABLE ORDER_PAY;
+DELETE FROM ORDER_PAY;
 CREATE TABLE ORDER_PAY(
 		ORDER_PAYNO                   		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		MEMBERNO                      		NUMBER(10)		 NULL ,
@@ -172,6 +174,7 @@ CREATE SEQUENCE ORDER_PAY_seq
 /* Table Name: 주문상세 */
 /**********************************/
 DROP TABLE ORDER_ITEM;
+DELETE FROM ORDER_ITEM;
 CREATE TABLE ORDER_ITEM(
 		ORDER_ITEMNO                  		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		MEMBERNO                      		NUMBER(10)		 NULL ,
